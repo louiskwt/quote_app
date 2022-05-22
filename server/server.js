@@ -1,0 +1,30 @@
+require('dotenv').config();
+
+const express = require('express');
+const cors = require('cors');
+const morgan = require('morgan');
+
+// bring in the routes
+const quoteRoutes = require('./routes/quoteRoutes');
+
+// create express app
+const app = express();
+
+// Middlewares
+
+// logger
+app.use(morgan('dev'));
+
+// enable cors
+app.use(cors());
+
+app.use(express.json());
+
+// api routes
+app.use('/api/v1/quotes', quoteRoutes)
+
+const PORT = process.env.PORT;
+
+app.listen(PORT, () => {
+    console.log(`Server running at port: ${PORT}`);
+})
