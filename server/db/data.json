@@ -1,0 +1,67 @@
+{
+    "quotes": [
+        {
+            "id": 1,
+            "name": "Mr. Fung",
+            "address": "La Lumiere, Hung Hom, Kowloon, Hong Kong",
+            "content": [
+                            {
+                                "item": "remove all the furnitures",
+                                "price": 10000
+                            },
+                            {
+                                "item": "repaint all the walls inside",
+                                "price": 10000
+                            },
+                            {
+                                "item": "redeisgn the bathroom and living room",
+                                "price": 65000
+                            }
+            ],
+            "created_at": "23 May, 2021",
+            "updated_at": "23 May, 2021"      
+        },
+        {
+            "id": 2,
+            "name": "Mr. Fung",
+            "address": "La Lumiere, Hung Hom, Kowloon, Hong Kong",
+            "content": [
+                        {
+                            "item": "remove all the furnitures",
+                            "price": 10000
+                        },
+                        {
+                            "item": "repaint all the walls inside",
+                            "price": 10000
+                        },
+                        {
+                            "item": "redeisgn the bathroom and living room",
+                            "price": 65000
+                        }
+                    ],
+            "created_at": "23 May, 2021",
+            "updated_at": "23 May, 2021"
+        },
+        {
+            "id": 3,
+            "name": "Mr. Fung",
+            "address": "La Lumiere, Hung Hom, Kowloon, Hong Kong",
+            "content": [
+                        {
+                            "item": "remove all the furnitures",
+                            "price": 10000
+                        },
+                        {
+                            "item": "repaint all the walls inside",
+                            "price": 10000
+                        },
+                        {
+                            "item": "redeisgn the bathroom and living room",
+                            "price": 65000
+                        }
+                    ],
+            "created_at": "23 May, 2021",
+            "updated_at": "23 May, 2021"
+        }
+    ]
+}
