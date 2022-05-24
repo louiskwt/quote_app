@@ -13,8 +13,12 @@ const Home = () => {
 
   useEffect(() => {
     const fetchQuotes = async () => {
-      const res = await quoteApi.get('/all');
-      setQuotes(res.data.data);
+      try {
+        const res = await quoteApi.get('/all');
+        setQuotes(res.data.data);        
+      } catch (error) {
+        console.log(error.message);
+      }
     }
     fetchQuotes()
   }, [])
