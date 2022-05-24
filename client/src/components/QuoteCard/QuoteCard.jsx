@@ -4,21 +4,21 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-const QuoteCard = () => {
+const QuoteCard = ({quote}) => {
   return (
-    <Card sx={{ minWidth: '400px', textAlign: 'left', marginTop: '1rem' }}>
+    <Card sx={{ minWidth: '420px', textAlign: 'left', marginTop: '1rem' }}>
         <CardContent>
-              <Typography variant="h5" component="div">
-                  Quote Title
+              <Typography variant="h6" component="div">
+                  {quote.address}
               </Typography>
-              <Typography variant="body1">
-                  Name: 
+              <Typography variant="body1" sx={{ mt: 3 }}>
+                  客戶: {quote.name}
                   <br/>
-                  Address:
+                  日期: {quote.updated_at}
               </Typography>
         </CardContent>
         <CardActions>
-            <Button size="small">Learn More</Button>
+            <Button size="small" sx={{ fontWeight: 800, fontSize: '1rem'}}>查看</Button>
          </CardActions>
     </Card>
   )
