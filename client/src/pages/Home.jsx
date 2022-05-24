@@ -1,15 +1,19 @@
-import { useEffect } from 'react'
+import { useEffect, useContext } from 'react'
 import { Container } from '@mui/material'
 import React from 'react'
 import QuoteCard from '../components/QuoteCard/QuoteCard'
 import Tab from '../components/Tab/Tab'
 import quoteApi from '../apis/quoteApi'
+import { QuotesContext } from '../context/quotesContext'
 
 const Home = () => {
+  // pull out the state and set function from context
+  const { quotes, setQuotes } = useContext(QuotesContext);
+
   useEffect(() => {
     const fetchQuotes = async () => {
       const res = await quoteApi.get('/all');
-      console.log(res.data.data);
+      setQuotes(res.data.data);
     }
 
     fetchQuotes()
