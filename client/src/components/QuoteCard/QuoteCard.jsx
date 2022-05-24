@@ -3,6 +3,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { Link } from "react-router-dom";
 
 const QuoteCard = ({quote}) => {
   return (
@@ -18,7 +19,9 @@ const QuoteCard = ({quote}) => {
               </Typography>
         </CardContent>
         <CardActions>
-            <Button size="small" sx={{ fontWeight: 800, fontSize: '1rem'}}>查看</Button>
+            <Link to={`/${quote.id}`} >
+              <Button size="small" sx={{ fontWeight: 800, fontSize: '1rem' }}>查看</Button>
+            </Link>
          </CardActions>
     </Card>
   )
