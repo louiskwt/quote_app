@@ -1,19 +1,21 @@
+const data = require('../db/data.json');
 
-const getAllQuotes = (req, res) => {
+const getQuotes = (req, res) => {
+    let result;
+
+    if(req.params.id === "all") {
+        result = data.quotes;
+    } else {
+        result = data.quotes.filter((item) => item.id === parseInt(req.params.id));
+    }
+
     res.status(200).json({
         status: 'Success',
-        data: []
+        data: result
     })
 }
 
-const getOneQuote = (req, res) => {
-    res.status(200).json({
-        status: 'Success',
-        data: []
-    })
-}
 
 module.exports = {
-    getAllQuotes,
-    getOneQuote
+    getQuotes
 }
