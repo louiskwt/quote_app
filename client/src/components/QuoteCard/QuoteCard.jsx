@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 
 const QuoteCard = ({quote}) => {
   return (
-    <Card sx={{ minWidth: '420px', textAlign: 'left', marginTop: '1rem' }}>
+    <Card sx={{ minWidth: '350px', textAlign: 'left', marginTop: '1rem' }}>
         <CardContent>
               <Typography variant="h6" component="div">
                   {quote.address}
