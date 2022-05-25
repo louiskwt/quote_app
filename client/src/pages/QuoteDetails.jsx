@@ -2,14 +2,13 @@ import {useContext, useEffect} from 'react'
 import { useParams } from 'react-router-dom'
 import quoteApi from '../apis/quoteApi';
 import Loader from '../components/Loader/Loader';
+import Quote from '../components/Quote/Quote';
 import { QuotesContext } from '../context/quotesContext'
 
 
 const QuoteDetails = () => {
   const { id } = useParams();
   const {selectedQuote, setSelectedQuote} = useContext(QuotesContext);
-
-  console.log(id)
 
   useEffect(() => {
     const fetchQuoteDetail = async () => {
@@ -24,7 +23,7 @@ const QuoteDetails = () => {
   }, [])
 
   return (
-    (selectedQuote ? <div>{selectedQuote.address}</div> : <Loader />)
+    (selectedQuote ? <Quote quote={selectedQuote} /> : <Loader />)
   )
 }
 

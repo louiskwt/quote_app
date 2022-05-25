@@ -1,6 +1,5 @@
 import { useEffect, useContext } from 'react'
 import { Container } from '@mui/material'
-import React from 'react'
 import Tab from '../components/Tab/Tab'
 import quoteApi from '../apis/quoteApi'
 import { QuotesContext } from '../context/quotesContext'
