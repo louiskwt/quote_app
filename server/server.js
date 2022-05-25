@@ -4,6 +4,8 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 
+const { sequelize } = require('./models');
+
 // bring in the routes
 const quoteRoutes = require('./routes/quoteRoutes');
 
@@ -25,6 +27,19 @@ app.use('/api/v1/quotes', quoteRoutes)
 
 const PORT = process.env.PORT;
 
+
 app.listen(PORT, () => {
     console.log(`Server running at port: ${PORT}`);
 })
+
+
+const db = async () => {
+    try {
+        await sequelize.authenticate();
+        console.log('Connection has been established');
+    } catch (error) {
+        console.log('Unable to conntect', error)
+    }
+}
+
+db();
