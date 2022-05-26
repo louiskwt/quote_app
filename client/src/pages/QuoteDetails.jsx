@@ -14,7 +14,7 @@ const QuoteDetails = () => {
     const fetchQuoteDetail = async () => {
       try {
         const res = await quoteApi.get(`/${id}`);
-        setSelectedQuote(res.data.data[0]);
+        setSelectedQuote(res.data.data);
       } catch (error) {
         console.log(error.message);
       }

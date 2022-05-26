@@ -5,7 +5,7 @@ const { Op } = require('sequelize')
 const getAllQuotes = async (req, res) => {
     try {
         const data = await quote.findAll({
-            attributes: ['name', 'address', 'content', 'memo', 'updatedAt']
+            attributes: ['id', 'name', 'address', 'content', 'memo', 'updatedAt']
         });
        
         return res.status(200).json({

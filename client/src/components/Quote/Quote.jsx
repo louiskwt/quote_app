@@ -47,7 +47,7 @@ const Quote = ({ quote }) => {
         </Stack>
         <Divider sx={{ borderColor: '#000000', mt: 3 }}/>
         <Grid container rowSpacing={5} spacing={5}  sx={{ mt: 2, mb: 5 }}>
-            {quote.contents.map((content, index) => <Item content={content} index={index} key={index} />)}
+            {quote.content.map((content, index) => <Item content={content} index={index} key={index} />)}
             <Grid item xs={12} sx={{ mt: 2 }} >
                   註：
             </Grid>
