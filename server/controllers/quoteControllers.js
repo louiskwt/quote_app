@@ -8,7 +8,10 @@ const getAllQuotes = async (req, res) => {
             attributes: ['name', 'address', 'content', 'memo', 'updatedAt']
         });
        
-        return res.status(200).json(data);
+        return res.status(200).json({
+            status: 'success',
+            data
+        });
     } catch (error) {
         return res.status(500).json(error.message);
     }
@@ -28,7 +31,10 @@ const getSingleQuote = async (req, res) => {
             }
         });
 
-        return res.status(200).json(data);
+        return res.status(200).json({
+            status: 'success',
+            data
+        });
     } catch (error) {
         return res.status(500).json(error.message);
     }
