@@ -4,7 +4,7 @@ import { Box } from '@mui/material';
 
 const Loader = () => {
   return (
-    <Box component='div' sx={{ p: 2 }}>
+    <Box component='div' sx={{ p: 2, display: 'flex', justifyContent: 'center' }} >
         <CircularProgress />
     </Box>
   )

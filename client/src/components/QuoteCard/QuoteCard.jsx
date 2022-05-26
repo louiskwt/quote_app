@@ -15,7 +15,7 @@ const QuoteCard = ({quote}) => {
               <Typography variant="body1" sx={{ mt: 3 }}>
                   客戶: {quote.name}
                   <br/>
-                  日期: {quote.updated_at}
+                  日期: {quote.updatedAt}
               </Typography>
         </CardContent>
         <CardActions>

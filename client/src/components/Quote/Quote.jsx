@@ -43,7 +43,7 @@ const Quote = ({ quote }) => {
         </Typography>
           <Stack sx={{ display: 'flex', justifyContent: 'center', alignItem: 'center', mt: 3 }} direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 1, sm: 2, md: 4, }}>
             <Typography as="span">客戶： {quote.name}</Typography>
-            <Typography as="span">日期：{quote.updated_at}</Typography>
+            <Typography as="span">日期：{quote.updatedAt}</Typography>
         </Stack>
         <Divider sx={{ borderColor: '#000000', mt: 3 }}/>
         <Grid container rowSpacing={5} spacing={5}  sx={{ mt: 2, mb: 5 }}>
