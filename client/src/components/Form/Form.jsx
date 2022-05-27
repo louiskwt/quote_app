@@ -1,55 +1,11 @@
 import { Box, Button, FormControl, Paper, Stack, TextField, Typography } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete';
-import { useState } from 'react'
-import { v4 as uuidv4 } from 'uuid';
+import { useContext } from 'react'
+import { FormsContext } from '../../context/formsContext';
+
 
 const Form = () => {
-    const [name, setName] = useState('');
-    const [address, setAddress] = useState('');
-    const [memo, setMemo] = useState('');
-    const [contents, setContents] = useState([
-        {
-            id: uuidv4(),
-            item: '',
-            price: '',
-            subItem: ''
-        }
-    ])
-
-    const handleGeneralInput = (type, value) => {
-        const updateFunc = {
-            name: setName,
-            address: setAddress,
-            memo: setMemo,
-        }
-        updateFunc[type](value);
-    }
-
-    // dynamically add content function
-    const addContent = () => {
-        // set up an empty content
-        const emptyContent = {
-            id: uuidv4(),
-            item: '',
-            price: '',
-            subItem: ''
-        }
-        setContents([...contents, emptyContent]);
-    }
-
-    const deleteContent = (id) => {
-        // filter out the content based on id
-        setContents((contents) => {
-            return contents.filter((content) => content.id !== id)
-        });
-    }
-
-    const handleContentInput = (index, key, value) => {
-        let updatedContent = [...contents];
-        updatedContent[index][key] = value;
-
-        setContents(updatedContent);
-    }
+    const {formState, handleContentInput, handleGeneralInput, addContent, deleteContent} = useContext(FormsContext);
 
   return (
     <>
@@ -58,10 +14,10 @@ const Form = () => {
         <Paper sx={{ p: 4, mt: 3 }}>
             <Typography variant='h6'>客戶資訊</Typography>
             <FormControl fullWidth sx={{ mt: 3 }}>
-                <TextField label="客戶" id="name" value={name} onChange={(e) => handleGeneralInput('name', e.target.value)} />
+                <TextField label="客戶" id="name" value={formState.name} onChange={(e) => handleGeneralInput(e.target.id, e.target.value)} />
             </FormControl>
             <FormControl fullWidth sx={{ mt: 3 }}>
-                <TextField label="地址" id="address" value={address} onChange={(e) => handleGeneralInput('address', e.target.value)} />
+                <TextField label="地址" id="address" value={formState.address} onChange={(e) => handleGeneralInput(e.target.id, e.target.value)} />
             </FormControl>
         </Paper>
         {/* Content */}
@@ -72,7 +28,7 @@ const Form = () => {
                     增加細項
                   </Button>
               </Stack>
-              {contents && contents.map((content, index) => (
+              {formState.contents && formState.contents.map((content, index) => (
                   <div key={index} style={{ marginBottom: '1.5rem' }}>
                       <Stack direction="row" spacing={2}>
                           <Button variant="outlined" size='medium' color='error' onClick={() => deleteContent(content.id)} startIcon={<DeleteIcon />}>
@@ -93,7 +49,7 @@ const Form = () => {
         <Paper sx={{ p: 4, mt: 3 }}>
               <Typography variant='h6'>備注</Typography>
               <FormControl fullWidth sx={{ mt: 3 }}>
-                  <TextField label="備注 (每項用 / 分隔)" id="name" value={memo} onChange={(e) => handleGeneralInput('memo', e.target.value)} />
+                  <TextField label="備注 (每項用 / 分隔)" id="name" value={formState.memo} onChange={(e) => handleGeneralInput(e.target.id, e.target.value)} />
               </FormControl>
         </Paper>
         <Button fullWidth variant='contained' sx={{ mt:3 }}> 建立</Button>
