@@ -20,7 +20,6 @@ const getAllQuotes = async (req, res) => {
 // fetch one quote
 const getSingleQuote = async (req, res) => {
     const id = req.params.id;
-
     try {
         const data = await quote.findOne({
             attributes: ['id', 'name', 'address', 'content', 'memo', 'updatedAt'],
@@ -53,8 +52,30 @@ const createQuote = async (req, res) => {
     }
 }
 
+// Delete Quote
+const deleteQuote = async (req, res) => {
+    const id = req.params.id;
+    try {
+        const data = await quote.destroy({
+            where: {
+                id: {
+                    [Op.eq]: id
+                }
+            }
+        });
+
+        return res.status(200).json({
+            status: 'success',
+            data
+        });
+    } catch (error) {
+        return res.status(500).json(error.message);
+    }
+}
+
 module.exports = {
     getAllQuotes,
     createQuote,
-    getSingleQuote
+    getSingleQuote,
+    deleteQuote
 }
