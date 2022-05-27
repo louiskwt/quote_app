@@ -4,7 +4,7 @@ import Form from '../components/Form/Form'
 
 const CreateQuote = () => {
   return (
-    <Container>
+    <Container sx={{ p:5 }}>
       <Form />
     </Container>
   )
