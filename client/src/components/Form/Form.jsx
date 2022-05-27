@@ -4,8 +4,8 @@ import { useContext } from 'react'
 import { FormsContext } from '../../context/formsContext';
 
 
-const Form = () => {
-    const {formState, handleContentInput, handleGeneralInput, addContent, deleteContent} = useContext(FormsContext);
+const Form = ({ action }) => {
+    const {formState, handleContentInput, handleGeneralInput, addContent, deleteContent, handleFormSubmit} = useContext(FormsContext);
 
   return (
     <>
@@ -49,10 +49,10 @@ const Form = () => {
         <Paper sx={{ p: 4, mt: 3 }}>
               <Typography variant='h6'>備注</Typography>
               <FormControl fullWidth sx={{ mt: 3 }}>
-                  <TextField label="備注 (每項用 / 分隔)" id="name" value={formState.memo} onChange={(e) => handleGeneralInput(e.target.id, e.target.value)} />
+                  <TextField label="備注 (每項用 / 分隔)" id="memo" value={formState.memo} onChange={(e) => handleGeneralInput(e.target.id, e.target.value)} />
               </FormControl>
         </Paper>
-        <Button fullWidth variant='contained' sx={{ mt:3 }}> 建立</Button>
+        <Button fullWidth variant='contained' sx={{ mt:3 }} onClick={(e) => handleFormSubmit(e, action)}> 建立</Button>
     </>
   )
 }

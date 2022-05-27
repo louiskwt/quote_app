@@ -1,5 +1,7 @@
 import { useState, createContext, useReducer } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4} from 'uuid';
+import quoteApi from '../apis/quoteApi';
 
 const FormsContext = createContext();
 
@@ -34,6 +36,8 @@ const formReducer = (formState, formAction) => {
 }
 
 const FormsContextProvider = ({children}) => {
+    let navigate = useNavigate();
+
     const [formState, dispatchForm] = useReducer(formReducer, initialFormState);
 
     const handleGeneralInput = (field, value) => {
@@ -59,10 +63,32 @@ const FormsContextProvider = ({children}) => {
     }
 
     const handleContentInput = (index, key, value) => {
-        let updatedContents = [...contents];
+        let updatedContents = [...formState.contents];
         updatedContents[index][key] = value;
 
         dispatchForm({ type: "SET_CONTENT_INPUT", updatedContents });
+    }
+
+    const handleFormSubmit = async (event, action) => {
+        let formData = formState;
+
+        console.log(formData);
+        event.preventDefault();
+        if(action === 'submit') {
+
+            try {
+                const data = await quoteApi.post('/', {
+                    name: formState.name,
+                    address: formState.address,
+                    content: formState.contents,
+                    memo: formState.memo.split('/')
+                })
+                console.log(data);
+                navigate('/');
+            } catch (error) {
+                console.log(error.message);
+            }
+        }
     }
 
     const value = {
@@ -70,6 +96,7 @@ const FormsContextProvider = ({children}) => {
         addContent,
         deleteContent,
         handleContentInput,
+        handleFormSubmit,
         formState
     }
 

@@ -5,7 +5,7 @@ import Form from '../components/Form/Form'
 const CreateQuote = () => {
   return (
     <Container sx={{ p:5 }}>
-      <Form />
+      <Form action="submit" />
     </Container>
   )
 }
