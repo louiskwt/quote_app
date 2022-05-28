@@ -5,7 +5,7 @@ const { Op } = require('sequelize')
 const getAllQuotes = async (req, res) => {
     try {
         const data = await quote.findAll({
-            attributes: ['id', 'name', 'address', 'content', 'memo', 'updatedAt']
+            attributes: ['id', 'name', 'address', 'contents', 'memo', 'updatedAt']
         });
        
         return res.status(200).json({
@@ -22,7 +22,7 @@ const getSingleQuote = async (req, res) => {
     const id = req.params.id;
     try {
         const data = await quote.findOne({
-            attributes: ['id', 'name', 'address', 'content', 'memo', 'updatedAt'],
+            attributes: ['id', 'name', 'address', 'contents', 'memo', 'updatedAt'],
             where: {
                 id: {
                     [Op.eq]: id
@@ -41,11 +41,11 @@ const getSingleQuote = async (req, res) => {
 
 // Create quote
 const createQuote = async (req, res) => {
-    const { name, address, content, memo } = req.body;
+    const { name, address, contents, memo } = req.body;
     const createdAt = new Date();
     const updatedAt = new Date();
     try {
-        const data = await quote.create({name, address, content, memo, createdAt, updatedAt});
+        const data = await quote.create({name, address, contents, memo, createdAt, updatedAt});
         return res.json(data);
     } catch (error) {
         return res.status(500).json(error.message)
