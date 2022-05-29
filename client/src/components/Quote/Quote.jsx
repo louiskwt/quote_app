@@ -1,4 +1,4 @@
-import { Container, Divider, Stack, Typography, Grid, Box} from '@mui/material'
+import { Container, Divider, Stack, Typography, Grid, Box, Button} from '@mui/material'
 
 // format price
 const intlNum = new Intl.NumberFormat('en-US');
@@ -42,6 +42,11 @@ const Quote = ({ quote }) => {
     // format date
     const date = new Date(quote.updatedAt);
 
+    // save PDF Button
+    const savePDF = () => {
+        window.print();
+    }
+
     return (
         <Container sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
             <Typography variant='h5' textAlign='center' >
@@ -73,6 +78,7 @@ const Quote = ({ quote }) => {
                 </Grid>
                 {quote.memo && quote.memo.map((memoItem, index) => <Memo memoItem={memoItem} key={index} index={index} /> )}
             </Grid>
+            <Button variant='contained' id="download-btn" fullWidth color="primary" onClick={savePDF}>下載報價單</Button>
         </Container>
     )
 }

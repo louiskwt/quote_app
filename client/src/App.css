@@ -1,3 +1,12 @@
-.App {
-  text-align: center;
+@media print {
+  #download-btn {
+    display: none;
+  }
+  #drawer {
+    display: none;
+  }
+  @page {
+      margin: 0;
+    }
+
 }

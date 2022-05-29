@@ -15,6 +15,7 @@ const QuoteDetails = () => {
       try {
         const res = await quoteApi.get(`/${id}`);
         setSelectedQuote(res.data.data);
+        document.title = res.data.data.address;
       } catch (error) {
         console.log(error.message);
       }

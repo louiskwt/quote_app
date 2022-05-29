@@ -5,6 +5,7 @@ import Header from './components/Header/Header'
 import { QuotesContextProvider } from './context/quotesContext'
 import QuoteDetails from './pages/QuoteDetails'
 import { FormsContextProvider } from './context/formsContext'
+import './App.css'
 
 function App() {
 

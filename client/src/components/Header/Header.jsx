@@ -27,7 +27,7 @@ const Header = () => {
 
 
     let drawer = <>
-                <IconButton onClick={toggleDrawer(true)}>
+                <IconButton id="drawer" onClick={toggleDrawer(true)}>
                     <MenuIcon fontSize='large' />
                 </IconButton>
                 <Drawer
