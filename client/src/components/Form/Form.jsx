@@ -36,12 +36,9 @@ const Form = ({ action }) => {
                           </Button>
                       </Stack>
                       <Box component='form' sx={{ mt: 3, display: 'flex', justifyContent: 'space-between' }}>
-                          <TextField label="工序" sx={{ mr: 4, width: '50ch' }} id="item" value={content.item} onChange={(e) => handleContentInput(index, e.target.id, e.target.value)} />
+                          <TextField label="工序" sx={{ mr: 4, width: '50ch' }} id="item" multiline value={content.item} onChange={(e) => handleContentInput(index, e.target.id, e.target.value)} />
                           <TextField label="價錢" id="price" sx={{ width: '30ch' }} value={content.price} onChange={(e) => handleContentInput(index, e.target.id, e.target.value)} />
                       </Box>
-                      <FormControl fullWidth sx={{ mt: 3 }}>
-                          <TextField label="詳細說明 (每項用 / 分隔)" id="subItem" value={content.subItem} onChange={(e) => handleContentInput(index, e.target.id, e.target.value)} />
-                      </FormControl>
                   </div>
               ))}
         </Paper>
@@ -49,7 +46,7 @@ const Form = ({ action }) => {
         <Paper sx={{ p: 4, mt: 3 }}>
               <Typography variant='h6'>備注</Typography>
               <FormControl fullWidth sx={{ mt: 3 }}>
-                  <TextField label="備注 (每項用 / 分隔)" id="memo" value={formState.memo} onChange={(e) => handleGeneralInput(e.target.id, e.target.value)} />
+                  <TextField label="工程備忘 (如要開新行，請用 $ 分隔)" id="memo" value={formState.memo} onChange={(e) => handleGeneralInput(e.target.id, e.target.value)} />
               </FormControl>
         </Paper>
         <Button fullWidth variant='contained' sx={{ mt:3 }} onClick={(e) => handleFormSubmit(e, action)}> 建立</Button>
