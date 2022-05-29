@@ -24,11 +24,23 @@ module.exports = (sequelize, DataTypes) => {
     },
     contents: {
       type: DataTypes.ARRAY(DataTypes.JSON),
-      allowNull: false
+      allowNull: false,
+      get() {
+        const rawValue = this.getDataValue('contents');
+        // turn contents price into an integer
+        return rawValue.map(obj => {
+          return {...obj, price: parseInt(obj.price)}
+        })
+      }
     },
     memo: {
       type: DataTypes.ARRAY(DataTypes.STRING),
-      allowNull: true
+      allowNull: true,
+      get() {
+        const rawValue = this.getDataValue('memo');
+        // split $ into a new array
+        return rawValue[0].split('$');
+      }
     }
   }, {
     sequelize,

@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import quoteApi from '../../apis/quoteApi';
 import { useContext } from 'react';
 import { QuotesContext } from '../../context/quotesContext';
+import { display } from '@mui/system';
 
 const QuoteCard = ({quote}) => {
   const {quotes, setQuotes } = useContext(QuotesContext)
@@ -28,14 +29,22 @@ const QuoteCard = ({quote}) => {
               <Typography variant="body1" sx={{ mt: 3 }}>
                   客戶: {quote.name}
                   <br/>
-                  日期: {quote.updatedAt}
+                  日期: {new Date(quote.updatedAt).toLocaleDateString()}
               </Typography>
         </CardContent>
-        <CardActions>
-            <Link to={`/${quote.id}`} >
-              <Button size="small" sx={{ fontWeight: 800, fontSize: '1rem' }}>查看</Button>
-            </Link>
-            <Button color='error' onClick={() => handleDelete(quote.id)}>刪除</Button>
+        <CardActions sx={{ p: 2 }}>
+          <Button size="small" sx={{ fontWeight: 800 }} variant="outlined">
+            <Link to={`/${quote.id}`} style={{ listStyle: 'none', textDecoration: 'none', color: 'inherit', fontSize: '15px'}} >
+                查看
+             </Link>
+          </Button>
+  
+            <Button sx={{ ml: 3, fontWeight: 800, }} color='error' variant="outlined" onClick={() => handleDelete(quote.id)}>
+              <span >
+                  刪除
+              </span>
+            </Button>
+    
          </CardActions>
     </Card>
   )
