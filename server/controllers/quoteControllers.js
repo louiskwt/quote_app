@@ -73,9 +73,35 @@ const deleteQuote = async (req, res) => {
     }
 }
 
+// update quote
+const updateQuote = async (req, res) => {
+    const id = req.params.id;
+
+    const { name, address, contents, memo } = req.body;
+    const updatedAt = new Date();
+
+    try {
+        const data = await quote.update({name, address, contents, memo, updatedAt}, {
+            where: {
+                id: {
+                    [Op.eq]: id
+                }
+            }
+        });
+
+        return res.status(200).json({
+            status: 'success',
+            data
+        });
+    } catch (error) {
+        return res.status(500).json(error.message);
+    }
+}
+
 module.exports = {
     getAllQuotes,
     createQuote,
     getSingleQuote,
-    deleteQuote
+    deleteQuote,
+    updateQuote
 }

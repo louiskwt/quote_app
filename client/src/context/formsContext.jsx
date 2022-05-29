@@ -14,7 +14,6 @@ const initialFormState = {
             id: uuidv4(),
             item: '',
             price: '',
-            subItem: ''
         }
     ],
     memo: ''
@@ -50,7 +49,6 @@ const FormsContextProvider = ({children}) => {
             id: uuidv4(),
             item: '',
             price: '',
-            subItem: ''
         }
         const updatedContents = [...formState.contents, content];
         dispatchForm({ type: "ADD_CONTENT", updatedContents });
@@ -75,13 +73,12 @@ const FormsContextProvider = ({children}) => {
         console.log(formData);
         event.preventDefault();
         if(action === 'submit') {
-
             try {
                 const data = await quoteApi.post('/', {
                     name: formState.name,
                     address: formState.address,
-                    content: formState.contents,
-                    memo: formState.memo.split('/')
+                    contents: formState.contents,
+                    memo: [formState.memo]
                 })
                 console.log(data);
                 navigate('/');
