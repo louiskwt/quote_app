@@ -6,6 +6,7 @@ import { QuotesContextProvider } from './context/quotesContext'
 import QuoteDetails from './pages/QuoteDetails'
 import { FormsContextProvider } from './context/formsContext'
 import './App.css'
+import { useEffect } from 'react'
 
 function App() {
 

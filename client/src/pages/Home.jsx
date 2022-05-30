@@ -14,7 +14,8 @@ const Home = () => {
     const fetchQuotes = async () => {
       try {
         const res = await quoteApi.get('/');
-        setQuotes(res.data.data);        
+        setQuotes(res.data.data);
+        document.title = '曾氏工程公司'        
       } catch (error) {
         console.log(error.message);
       }
