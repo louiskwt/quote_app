@@ -49,12 +49,14 @@ const Quote = ({ quote }) => {
 
     return (
         <Container sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
-            <Typography variant='h5' textAlign='center' >
-                {quote.address}
+            <Typography variant='h5' fontWeight={800} fontSize='1.8rem' textAlign='center' >
+                曾氏工程公司
             </Typography>
-            <Stack sx={{ display: 'flex', justifyContent: 'center', alignItem: 'center', mt: 3 }} direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 1, sm: 2, md: 4, }}>
-                <Typography as="span">客戶： {quote.name}</Typography>
-                <Typography as="span">日期：{date.toLocaleDateString()}</Typography>
+            <Stack sx={{ display: 'flex', alignItem: 'center', mt: 3 }} direction={{ xs: 'column' }} spacing={{ xs: 1, md: 2, }}>
+                <Typography as="span" fontWeight='bold' fontSize='1.1rem'>客戶： {quote.name}</Typography>
+                <Typography as="span" fontWeight='bold' fontSize='1.1rem'>地址：{quote.address}</Typography>
+                <Typography as="span" fontWeight='bold'>日期：{date.toLocaleDateString()}</Typography>
+            
             </Stack>
             <Divider sx={{ borderColor: '#000000', mt: 3 }}/>
             <Grid container rowSpacing={5} spacing={5}  sx={{ mt: 2, mb: 5 }}>
