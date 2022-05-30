@@ -21,7 +21,7 @@ const QuoteCard = ({quote}) => {
   }
 
   return (
-    <Card sx={{ width: '350px', textAlign: 'left', marginTop: '1rem' }} class="quote-card">
+    <Card sx={{ width: '350px', textAlign: 'left', marginTop: '1rem' }} className="quote-card">
         <CardContent>
               <Typography variant="h6" component="div">
                   {quote.address}

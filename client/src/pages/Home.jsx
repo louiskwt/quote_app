@@ -11,11 +11,11 @@ const Home = () => {
   const { quotes, setQuotes } = useContext(QuotesContext);
 
   useEffect(() => {
+    document.title = '曾氏工程公司'
     const fetchQuotes = async () => {
       try {
         const res = await quoteApi.get('/');
-        setQuotes(res.data.data);
-        document.title = '曾氏工程公司'        
+        setQuotes(res.data.data);        
       } catch (error) {
         console.log(error.message);
       }

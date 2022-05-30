@@ -6,13 +6,13 @@ const intlNum = new Intl.NumberFormat('en-US');
 const Item = ({ content, index }) => {
     return (
         <>
-            <Grid item xs={1} md={1} >
+            <Grid item xs={1} sm={1} md={1} >
                 <span>{index + 1}.</span> 
             </Grid>
-            <Grid item xs={7} md={7} >
+            <Grid item xs={6} sm={7} md={7} >
                 {content.item}
             </Grid>
-            <Grid item xs={4} md={4}  >
+            <Grid item xs={4} sm={4} md={4}  >
                 $ {intlNum.format(content.price)}
             </Grid>
         </>
@@ -25,7 +25,7 @@ const Memo = ({memoItem, index}) => {
             <Grid item xs={1}  >
                 <span>{index + 1}.</span>
             </Grid>
-            <Grid item xs={11}   >
+            <Grid item xs={9}   >
                 {memoItem}
             </Grid>
         </>
@@ -69,18 +69,23 @@ const Quote = ({ quote }) => {
                 {quote.contents.map((content, index) => <Item content={content} index={index} key={index} />)}
             </Grid>
             <Divider sx={{ borderColor: '#000000', mt: 3 }} />
-            <Grid container rowSpacing={3} spacing={5}  sx={{ mt: 2, mb: 5 }}>
-                <Grid item xs={8} sm={8}  >
+            <Grid container rowSpacing={3} spacing={5}  sx={{ pl: 10,  mt: 2, mb: 5 }}>
+                <Grid item xs={5} sm={8}  >
                 </Grid>
-                <Grid item xs={4} sm={4} >
+                <Grid item xs={5} sm={4} >
                     總數: $ {intlNum.format(totalPrice)} 
                 </Grid>
+            </Grid>
+            <Grid container rowSpacing={3} spacing={5} sx={{ mt: 2, mb: 5 }}>
                 <Grid item xs={12} sx={{ mt: 2 }} >
                     工程備忘：
                 </Grid>
-                {quote.memo && quote.memo.map((memoItem, index) => <Memo memoItem={memoItem} key={index} index={index} /> )}
+                {quote.memo && quote.memo.map((memoItem, index) => <Memo memoItem={memoItem} key={index} index={index} />)}
             </Grid>
-            <Button variant='contained' id="download-btn" fullWidth color="primary" onClick={savePDF}>下載報價單</Button>
+            <Box sx={{ marginBottom: '2rem'}}>
+                <Button fullwidth variant='contained' id="download-btn" color="primary" onClick={savePDF}>下載報價單</Button>
+            </Box>
+        
         </Container>
     )
 }

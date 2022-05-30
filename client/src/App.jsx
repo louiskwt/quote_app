@@ -6,7 +6,7 @@ import { QuotesContextProvider } from './context/quotesContext'
 import QuoteDetails from './pages/QuoteDetails'
 import { FormsContextProvider } from './context/formsContext'
 import './App.css'
-import { useEffect } from 'react'
+import UpdateQuote from './pages/UpdateQuote'
 
 function App() {
 
@@ -18,6 +18,7 @@ function App() {
           <Routes>
             <Route exact path='/' element={<Home />} />
             <Route exact path='/:id' element={<QuoteDetails />} />
+            <Route exact path='/update/:id' element={<UpdateQuote />} />
             <Route exact path='/create' element={<CreateQuote />} />
           </Routes>
         </FormsContextProvider>

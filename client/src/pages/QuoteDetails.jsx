@@ -1,8 +1,10 @@
+import { Container } from '@mui/material';
 import {useContext, useEffect} from 'react'
 import { useParams } from 'react-router-dom'
 import quoteApi from '../apis/quoteApi';
 import Loader from '../components/Loader/Loader';
 import Quote from '../components/Quote/Quote';
+import Tab from '../components/Tab/Tab';
 import { QuotesContext } from '../context/quotesContext'
 
 
@@ -24,7 +26,10 @@ const QuoteDetails = () => {
   }, [])
 
   return (
-    (selectedQuote ? <Quote quote={selectedQuote} /> : <Loader />)
+    <Container>
+      {selectedQuote ? <Quote quote={selectedQuote} /> : <Loader />}
+      <Tab iconType='edit' id={id} />
+    </Container>
   )
 }
 
