@@ -5,6 +5,9 @@
   #drawer {
     display: none;
   }
+  #tab {
+    display: none;
+  }
   @page {
       margin: 0;
     }

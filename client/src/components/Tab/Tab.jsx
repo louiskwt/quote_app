@@ -20,7 +20,7 @@ const Tab = ({ iconType, id }) => {
 
 
     return (
-        <Box sx={{ position: 'fixed', bottom: '1rem', right: '0.5rem' }}>
+        <Box id="tab" sx={{ position: 'fixed', bottom: '1rem', right: '0.5rem' }}>
             <Link to={TabType[iconType]['link']}>
                 <Fab color={TabType[iconType]['color']}>
                     {TabType[iconType]['icon']}

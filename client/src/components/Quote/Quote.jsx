@@ -9,7 +9,7 @@ const Item = ({ content, index }) => {
             <Grid item xs={1} sm={1} md={1} >
                 <span>{index + 1}.</span> 
             </Grid>
-            <Grid item xs={6} sm={7} md={7} >
+            <Grid item xs={7} sm={7} md={7} >
                 {content.item}
             </Grid>
             <Grid item xs={4} sm={4} md={4}  >
@@ -25,7 +25,7 @@ const Memo = ({memoItem, index}) => {
             <Grid item xs={1}  >
                 <span>{index + 1}.</span>
             </Grid>
-            <Grid item xs={9}   >
+            <Grid item xs={11}   >
                 {memoItem}
             </Grid>
         </>
@@ -69,10 +69,10 @@ const Quote = ({ quote }) => {
                 {quote.contents.map((content, index) => <Item content={content} index={index} key={index} />)}
             </Grid>
             <Divider sx={{ borderColor: '#000000', mt: 3 }} />
-            <Grid container rowSpacing={3} spacing={5}  sx={{ pl: 10,  mt: 2, mb: 5 }}>
-                <Grid item xs={5} sm={8}  >
+            <Grid container rowSpacing={3} spacing={5}  sx={{ pl: 15,  mt: 2, mb: 5 }}>
+                <Grid item xs={8} sm={8}  >
                 </Grid>
-                <Grid item xs={5} sm={4} >
+                <Grid item xs={4} sm={4} >
                     總數: $ {intlNum.format(totalPrice)} 
                 </Grid>
             </Grid>
