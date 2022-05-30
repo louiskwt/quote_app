@@ -98,10 +98,25 @@ const updateQuote = async (req, res) => {
     }
 }
 
+// find by query
+const findClient = async (req, res) => {
+    const query = req.params.query;
+    try {
+        const data = await quote.findAll({ where: { name: query } });
+        res.status(200).json({
+            status: 'success',
+            data
+        })
+    } catch (error) {
+        res.status(500).json(error.message)
+    }
+}
+
 module.exports = {
     getAllQuotes,
     createQuote,
     getSingleQuote,
     deleteQuote,
-    updateQuote
+    updateQuote,
+    findClient
 }

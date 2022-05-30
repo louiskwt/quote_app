@@ -1,5 +1,5 @@
 const express = require('express');
-const { getAllQuotes, getSingleQuote, createQuote, updateQuote, deleteQuote } = require('../controllers/quoteControllers');
+const { getAllQuotes, getSingleQuote, createQuote, updateQuote, deleteQuote, findClient } = require('../controllers/quoteControllers');
 
 const router = express.Router();
 
@@ -17,6 +17,9 @@ router.put('/:id', updateQuote);
 
 // delete Quote
 router.delete('/:id', deleteQuote);
+
+// find route
+router.get('/find/:query', findClient);
 
 
 module.exports = router
