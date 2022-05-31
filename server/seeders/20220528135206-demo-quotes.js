@@ -20,10 +20,12 @@ module.exports = {
         address: "九龍何文田半山一號10樓J",
         contents: cleanArray([
           {
+            "id": "uberw-32",
             "item": "清拆全屋傢俬",
             "price": "28000",
           },
           {
+            "id": "kiowe123",
             "item": "更換全屋電器",
             "price": "28000",
           }
@@ -37,10 +39,12 @@ module.exports = {
         address: "西半山好景花園一期D座8樓A",
         contents: cleanArray([
           {
+            "id": "dokidoki-123",
             "item": "清拆全屋傢俬",
             "price": "28000",
           },
           {
+            "id": "bmthksi-232",
             "item": "更換全屋電器",
             "price": "28000",
           }
@@ -57,9 +61,7 @@ module.exports = {
   async down (queryInterface, Sequelize) {
     /**
      * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
      */
+     await queryInterface.bulkDelete('quotes', null, {});
   }
 };
