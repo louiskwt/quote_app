@@ -1,4 +1,5 @@
-import { Container, Divider, Stack, Typography, Grid, Box, Button} from '@mui/material'
+import { Container, Divider, Stack, Typography, Grid, Box, Button} from '@mui/material';
+import DownloadIcon from '@mui/icons-material/Download';
 
 // format price
 const intlNum = new Intl.NumberFormat('en-US');
@@ -83,7 +84,7 @@ const Quote = ({ quote }) => {
                 {quote.memo && quote.memo.map((memoItem, index) => <Memo memoItem={memoItem} key={index} index={index} />)}
             </Grid>
             <Box sx={{ marginBottom: '2rem'}}>
-                <Button fullwidth variant='contained' id="download-btn" color="primary" onClick={savePDF}>下載報價單</Button>
+                <Button fullwidth variant='contained' id="download-btn" color="primary" onClick={savePDF} endIcon={<DownloadIcon />} >下載報價單</Button>
             </Box>
         
         </Container>

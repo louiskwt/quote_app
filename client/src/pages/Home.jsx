@@ -24,7 +24,7 @@ const Home = () => {
   }, [])
 
   return (
-    <Container sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center'}}>
+    <Container sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', pb: 10}}>
       <h1>曾氏工程公司</h1>
       {(quotes ? <QuoteList quotes={quotes} id="quote-list" /> : <Loader />)}
       <Tab iconType='add' />

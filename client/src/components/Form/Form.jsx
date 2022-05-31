@@ -2,6 +2,7 @@ import { Box, Button, FormControl, Paper, Stack, TextField, Typography } from '@
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useContext } from 'react'
 import { FormsContext } from '../../context/formsContext';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 
 const Form = ({ action }) => {
@@ -9,7 +10,7 @@ const Form = ({ action }) => {
 
   return (
     <>
-        <Typography variant='h5' textAlign="center">曾氏工程</Typography>
+        <Typography variant='h5' textAlign="center" fontWeight='bold'>曾氏工程公司</Typography>
          {/* Info */}
         <Paper sx={{ p: 4, mt: 3 }}>
             <Typography variant='h6'>客戶資訊</Typography>
@@ -24,7 +25,7 @@ const Form = ({ action }) => {
         <Paper sx={{ p: 4, mt: 3 }}>
               <Stack direction="row" spacing={2} sx={{ mb: 3, justifyContent: 'space-between' }}>
                   <Typography variant='h6' >工程細項</Typography>
-                  <Button variant="contained"  onClick={addContent}>
+                  <Button variant="contained" endIcon={<AddCircleOutlineIcon/>} onClick={addContent}>
                     增加細項
                   </Button>
               </Stack>

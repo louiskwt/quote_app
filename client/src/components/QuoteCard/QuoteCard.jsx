@@ -7,7 +7,8 @@ import { Link } from "react-router-dom";
 import quoteApi from '../../apis/quoteApi';
 import { useContext } from 'react';
 import { QuotesContext } from '../../context/quotesContext';
-import { display } from '@mui/system';
+
+
 
 const QuoteCard = ({quote}) => {
   const {quotes, setQuotes } = useContext(QuotesContext)
@@ -39,7 +40,7 @@ const QuoteCard = ({quote}) => {
              </Link>
           </Button>
   
-            <Button sx={{ ml: 3, fontWeight: 800, }} color='error' variant="outlined" onClick={() => handleDelete(quote.id)}>
+            <Button sx={{ ml: 3, fontWeight: 800, }} color='error' variant="outlined" onClick={() => handleDelete(quote.id)} >
               <span >
                   刪除
               </span>
