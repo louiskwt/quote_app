@@ -7,6 +7,7 @@ const FormsContext = createContext();
 
 // initial form state
 const initialFormState = {
+    id: '',
     name: '',
     address: '',
     contents: [
@@ -28,7 +29,19 @@ const formReducer = (formState, formAction) => {
         case "DELETE_CONTENT":
             return {...formState, contents: formState.contents.filter((content) => content.id !== formAction.id)};
         case "SET_CONTENT_INPUT":
-            return { ...formState, contents: formAction.updatedContents}
+            return { ...formState, contents: formAction.updatedContents};
+        case "SET_UPDATE_FORM":
+            return {
+                id: formAction.quote.id,
+                name: formAction.quote.name,
+                address: formAction.quote.address,
+                contents: formAction.quote.contents,
+                memo: formAction.quote.memo.join('$'),
+            };
+        case "RESET_FORM_STATE":
+            return {
+                ...initialFormState
+            };
         default:
             return formState;
     }
@@ -41,6 +54,10 @@ const FormsContextProvider = ({children}) => {
 
     const handleGeneralInput = (field, value) => {
         dispatchForm({ type: "SET_GENERAL_INPUT", field, value })
+    }
+
+    const setUpdateForm = (quote) => {
+        dispatchForm({ type: "SET_UPDATE_FORM", quote });
     }
 
     const addContent = () => {
@@ -67,26 +84,48 @@ const FormsContextProvider = ({children}) => {
         dispatchForm({ type: "SET_CONTENT_INPUT", updatedContents });
     }
 
-    const handleFormSubmit = async (event, action) => {
-        let formData = formState;
-
+    const handleFormSubmit = async (event) => {
+        let formData = {
+            name: formState.name,
+            address: formState.address,
+            contents: formState.contents,
+            memo: [formState.memo]
+        };
         console.log(formData);
         event.preventDefault();
-        if(action === 'submit') {
-            try {
-                const data = await quoteApi.post('/', {
-                    name: formState.name,
-                    address: formState.address,
-                    contents: formState.contents,
-                    memo: [formState.memo]
-                })
-                console.log(data);
-                navigate('/');
-            } catch (error) {
-                console.log(error.message);
-            }
+
+        try {
+            const data = await quoteApi.post('/', formData);
+            console.log(data);
+            navigate('/');
+        } catch (error) {
+            console.log(error.message);
         }
     }
+
+    const handleFormUpdate = async (event) => {
+        let formData = {
+            name: formState.name,
+            address: formState.address,
+            contents: formState.contents,
+            memo: [formState.memo]
+        };
+        console.log(formData);
+        event.preventDefault();
+
+        try {
+            const data = await quoteApi.put(`/${formState.id}`, formData);
+            console.log(data);
+            navigate('/');
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
+
+    const resetForm = () => {
+        dispatchForm({type: "RESET_FORM_STATE"});
+    }
+
 
     const value = {
         handleGeneralInput,
@@ -94,6 +133,9 @@ const FormsContextProvider = ({children}) => {
         deleteContent,
         handleContentInput,
         handleFormSubmit,
+        handleFormUpdate,
+        setUpdateForm,
+        resetForm,
         formState
     }
 
