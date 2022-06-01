@@ -83,8 +83,8 @@ const Quote = ({ quote }) => {
                 </Grid>
                 {quote.memo && quote.memo.map((memoItem, index) => <Memo memoItem={memoItem} key={index} index={index} />)}
             </Grid>
-            <Box sx={{ marginBottom: '2rem'}}>
-                <Button fullwidth variant='contained' id="download-btn" color="primary" onClick={savePDF} endIcon={<DownloadIcon />} >下載報價單</Button>
+            <Box sx={{ marginBottom: '2rem', display: 'flex', justifyContent: 'center'}}>
+                <Button sx={{ width: '60%' }} variant='contained' id="download-btn" color="primary" onClick={savePDF} endIcon={<DownloadIcon />} >下載報價單</Button>
             </Box>
         
         </Container>
