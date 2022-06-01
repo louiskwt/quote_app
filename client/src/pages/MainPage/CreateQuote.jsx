@@ -1,7 +1,7 @@
 import { Container } from '@mui/material'
 import React, { useEffect, useContext } from 'react'
-import Form from '../components/Form/Form'
-import { FormsContext } from '../context/formsContext'
+import Form from '../../components/Form/Form'
+import { FormsContext } from '../../context/formsContext'
 
 const CreateQuote = () => {
   const { resetForm } = useContext(FormsContext);

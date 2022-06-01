@@ -1,10 +1,10 @@
 import { useEffect, useContext } from 'react'
 import { Container, Typography } from '@mui/material'
-import Tab from '../components/Tab/Tab'
-import quoteApi from '../apis/quoteApi'
-import { QuotesContext } from '../context/quotesContext'
-import Loader from '../components/Loader/Loader'
-import QuoteList from '../components/QuoteList/QuoteList'
+import Tab from '../../components/Tab/Tab'
+import quoteApi from '../../apis/quoteApi'
+import { QuotesContext } from '../../context/quotesContext'
+import Loader from '../../components/Loader/Loader'
+import QuoteList from '../../components/QuoteList/QuoteList'
 
 const Home = () => {
   // pull out the state and set function from context
