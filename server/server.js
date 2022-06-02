@@ -21,6 +21,8 @@ app.use(morgan('dev'));
 app.use(cors());
 
 app.use(express.json());
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(express.urlencoded({ extend: true }));
 
 // api routes
 app.use('/api/v1/quotes', quoteRoutes)
