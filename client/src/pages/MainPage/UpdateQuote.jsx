@@ -1,9 +1,9 @@
 import { Container } from '@mui/material'
 import React, { useEffect, useContext } from 'react'
 import { useParams } from 'react-router-dom'
-import quoteApi from '../apis/quoteApi'
-import Form from '../components/Form/Form'
-import { FormsContext } from '../context/formsContext'
+import quoteApi from '../../apis/quoteApi'
+import Form from '../../components/Form/Form'
+import { FormsContext } from '../../context/formsContext'
 
 
 const UpdateQuote = () => {
