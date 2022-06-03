@@ -1,26 +1,32 @@
 const express = require('express');
 
 const { getAllQuotes, getSingleQuote, createQuote, updateQuote, deleteQuote, findClient } = require('../controllers/quoteControllers');
+const { authJwt } = require('../middleware');
 
 const router = express.Router();
 
 // Get quote
-router.get('/', getAllQuotes);
+// Private
+router.get('/', [authJwt.verifyToken], getAllQuotes);
 
 // Get single quote
-router.get('/:id', getSingleQuote);
+// Private
+router.get('/:id', [authJwt.verifyToken], getSingleQuote);
 
 // Create Quote
-router.post('/', createQuote);
+// Private
+router.post('/', [authJwt.verifyToken], createQuote);
 
 // Update Route
-router.put('/:id', updateQuote);
+// private
+router.put('/:id', [authJwt.verifyToken], updateQuote);
 
 // delete Quote
-router.delete('/:id', deleteQuote);
+// private
+router.delete('/:id', [authJwt.verifyToken], deleteQuote);
 
 // find route
-router.get('/find/:query', findClient);
+router.get('/find/:query', [authJwt.verifyToken], findClient);
 
 
 module.exports = router
