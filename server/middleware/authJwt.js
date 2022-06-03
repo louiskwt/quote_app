@@ -20,10 +20,21 @@ verifyToken = (req, res, next) => {
         req.userId = decoded.id;
         next();
     });
+
+    isUser = (req, res, next) => {
+        User.findByPk(req.userId).then(user => {
+            console.log('login success');
+            next();
+        });
+        res.status(403).send({
+            message: "Password or username incorrect"
+        })
+    } 
 };
 
 const authJwt = {
     verifyToken,
+    isUser
 }
 
 module.exports = authJwt;

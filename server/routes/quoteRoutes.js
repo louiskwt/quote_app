@@ -1,4 +1,5 @@
 const express = require('express');
+
 const { getAllQuotes, getSingleQuote, createQuote, updateQuote, deleteQuote, findClient } = require('../controllers/quoteControllers');
 
 const router = express.Router();

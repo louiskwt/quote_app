@@ -6,7 +6,7 @@ checkDuplicateUsernameOrEmail = (req, res, next) => {
     // Username check
     User.findOne({
         where: {
-            username: req.body.username
+            name: req.body.name
         }
     }).then(user => {
         if(user) {
@@ -29,7 +29,11 @@ checkDuplicateUsernameOrEmail = (req, res, next) => {
             }
             next();
         })
-    });
+    }).catch(error => {
+        res.status(400).json({
+            message: error.message
+        })
+    }) 
 };
 
 const verifySignUp = {
