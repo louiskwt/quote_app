@@ -9,6 +9,7 @@ const getAllQuotes = async (req, res) => {
         });
        
         return res.status(200).json({
+            message: 'authenticated',
             status: 'success',
             data
         });

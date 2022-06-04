@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
@@ -10,10 +10,19 @@ import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from "react-router-dom";
+import { UserContext } from '../../context/userContext';
+
 
 import './Header.css';
 
 const Header = () => {
+    // user context
+    const { userState } = useContext(UserContext);
+
+    const drawerId = userState.token ? "drawer" : "hiddenDrawer";
+
+    const headerClass = userState.token ? "header" : "hidden";
+
     // Drawer state
     const [drawerState, setDrawerState] = useState(false);
 
@@ -27,7 +36,7 @@ const Header = () => {
 
 
     let drawer = <>
-                <IconButton id="drawer" onClick={toggleDrawer(true)}>
+                <IconButton id={drawerId} onClick={toggleDrawer(true)}>
                     <MenuIcon fontSize='large' />
                 </IconButton>
                 <Drawer
@@ -64,7 +73,7 @@ const Header = () => {
                 </>
 
     return (
-        <div className='header'>
+        <div className={headerClass}>
             {drawer}
         </div>
     )

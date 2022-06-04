@@ -6,11 +6,13 @@ import Loader from '../../components/Loader/Loader';
 import Quote from '../../components/Quote/Quote';
 import Tab from '../../components/Tab/Tab';
 import { QuotesContext } from '../../context/quotesContext'
+import { useNavigate } from 'react-router-dom';
 
 
 const QuoteDetails = () => {
   const { id } = useParams();
   const {selectedQuote, setSelectedQuote} = useContext(QuotesContext);
+  let navigate = useNavigate();
 
   useEffect(() => {
     const fetchQuoteDetail = async () => {
@@ -20,6 +22,7 @@ const QuoteDetails = () => {
         document.title = res.data.data.address;
       } catch (error) {
         console.log(error.message);
+        navigate('/login');
       }
     }
     fetchQuoteDetail();

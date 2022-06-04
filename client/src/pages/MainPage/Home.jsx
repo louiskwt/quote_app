@@ -5,19 +5,29 @@ import quoteApi from '../../apis/quoteApi'
 import { QuotesContext } from '../../context/quotesContext'
 import Loader from '../../components/Loader/Loader'
 import QuoteList from '../../components/QuoteList/QuoteList'
+import { UserContext } from '../../context/userContext'
+import { useNavigate } from 'react-router-dom';
+
 
 const Home = () => {
   // pull out the state and set function from context
   const { quotes, setQuotes } = useContext(QuotesContext);
 
+  const { userState } = useContext(UserContext);
+
+  let navigate = useNavigate()
+
   useEffect(() => {
     document.title = '曾氏工程公司'
     const fetchQuotes = async () => {
       try {
-        const res = await quoteApi.get('/');
-        setQuotes(res.data.data);        
+        const res = await quoteApi.get('/', {
+          headers: {"x-access-token": userState.token}
+        });
+        setQuotes(res.data.data);       
       } catch (error) {
         console.log(error.message);
+        navigate('/login');
       }
     }
     fetchQuotes()
@@ -25,9 +35,14 @@ const Home = () => {
 
   return (
     <Container sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', pb: 10}}>
-      <h1>曾氏工程公司</h1>
-      {(quotes ? <QuoteList quotes={quotes} id="quote-list" /> : <Loader />)}
-      <Tab iconType='add' />
+      {(quotes ? 
+        <>
+          <h1>曾氏工程公司</h1>
+          <QuoteList quotes={quotes} id="quote-list" />
+          <Tab iconType='add' /> 
+        </>
+        : 
+        <Loader />)}
     </Container>
   )
 }
