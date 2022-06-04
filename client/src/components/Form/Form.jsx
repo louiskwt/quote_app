@@ -3,11 +3,13 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useContext, useEffect } from 'react'
 import { FormsContext } from '../../context/formsContext';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import { UserContext } from '../../context/userContext';
 
 
 const Form = ({ action, quote }) => {
     const {formState, handleContentInput, handleGeneralInput, addContent, deleteContent, handleFormSubmit, handleFormUpdate} = useContext(FormsContext);
 
+    const {userState} = useContext(UserContext);
 
   return (
     <>
@@ -51,8 +53,8 @@ const Form = ({ action, quote }) => {
                   <TextField label="工程備忘 (如要開新行，請用 $ 分隔)" id="memo" value={formState.memo} onChange={(e) => handleGeneralInput(e.target.id, e.target.value)} />
               </FormControl>
         </Paper>
-        {action === "create" && <Button variant='contained' sx={{ mt: 3 }} onClick={(e) => handleFormSubmit(e)}>建立報價單</Button>}
-        {action === "edit" && <Button variant='contained' color='success' sx={{ mt: 3 }} onClick={(e) => handleFormUpdate(e)}>更新報價單</Button>}
+        {action === "create" && <Button variant='contained' sx={{ mt: 3 }} onClick={(e) => handleFormSubmit(e, userState.token)}>建立報價單</Button>}
+        {action === "edit" && <Button variant='contained' color='success' sx={{ mt: 3 }} onClick={(e) => handleFormUpdate(e, userState.token)}>更新報價單</Button>}
         
     </>
   )

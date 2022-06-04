@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const UserContext = createContext();
 
-const initialUserState = {
+const initialUserState = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : {
     id: '',
     name: '',
     token: null

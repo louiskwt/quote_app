@@ -7,14 +7,20 @@ import { Link } from "react-router-dom";
 import quoteApi from '../../apis/quoteApi';
 import { useContext } from 'react';
 import { QuotesContext } from '../../context/quotesContext';
+import { UserContext } from '../../context/userContext'
 
 
 
 const QuoteCard = ({quote}) => {
+
   const {quotes, setQuotes } = useContext(QuotesContext)
+  const {userState} = useContext(UserContext);
+  
   const handleDelete = async (id) => {
     try {
-      await quoteApi.delete(`/${id}`);
+      await quoteApi.delete(`/${id}`, {
+          headers: {"x-access-token": userState.token}
+        });
       setQuotes(quotes.filter((quote) => quote.id !== id));
     } catch (error) {
       alert(error);

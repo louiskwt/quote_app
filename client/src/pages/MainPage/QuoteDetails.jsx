@@ -6,18 +6,22 @@ import Loader from '../../components/Loader/Loader';
 import Quote from '../../components/Quote/Quote';
 import Tab from '../../components/Tab/Tab';
 import { QuotesContext } from '../../context/quotesContext'
+import { UserContext } from '../../context/userContext'
 import { useNavigate } from 'react-router-dom';
 
 
 const QuoteDetails = () => {
   const { id } = useParams();
   const {selectedQuote, setSelectedQuote} = useContext(QuotesContext);
+  const { userState } = useContext(UserContext);
   let navigate = useNavigate();
 
   useEffect(() => {
     const fetchQuoteDetail = async () => {
       try {
-        const res = await quoteApi.get(`/${id}`);
+        const res = await quoteApi.get(`/${id}`, {
+          headers: {"x-access-token": userState.token}
+        });
         setSelectedQuote(res.data.data);
         document.title = res.data.data.address;
       } catch (error) {

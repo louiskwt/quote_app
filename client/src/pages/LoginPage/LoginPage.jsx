@@ -26,11 +26,11 @@ const LoginPage = () => {
     try {
       const res = await userApi.post('/signin', signInFormData);
       loginUser(res.data);
+      localStorage.setItem('user', JSON.stringify(res.data));
       navigate('/');
     } catch (error) {
       console.log(error.message);
     }
-    
   }
 
   return (

@@ -1,7 +1,8 @@
-import { useState, createContext, useReducer } from 'react';
+import { useContext, createContext, useReducer } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4} from 'uuid';
 import quoteApi from '../apis/quoteApi';
+
 
 const FormsContext = createContext();
 
@@ -84,7 +85,7 @@ const FormsContextProvider = ({children}) => {
         dispatchForm({ type: "SET_CONTENT_INPUT", updatedContents });
     }
 
-    const handleFormSubmit = async (event) => {
+    const handleFormSubmit = async (event, token) => {
         let formData = {
             name: formState.name,
             address: formState.address,
@@ -95,15 +96,20 @@ const FormsContextProvider = ({children}) => {
         event.preventDefault();
 
         try {
-            const data = await quoteApi.post('/', formData);
+            const data = await quoteApi.post('/', formData, {
+                headers: {
+                    "x-access-token": token
+                }
+            });
             console.log(data);
             navigate('/');
         } catch (error) {
             console.log(error.message);
+            alert(error.message);
         }
     }
 
-    const handleFormUpdate = async (event) => {
+    const handleFormUpdate = async (event, token) => {
         let formData = {
             name: formState.name,
             address: formState.address,
@@ -114,11 +120,16 @@ const FormsContextProvider = ({children}) => {
         event.preventDefault();
 
         try {
-            const data = await quoteApi.put(`/${formState.id}`, formData);
+            const data = await quoteApi.put(`/${formState.id}`, formData, {
+                headers: {
+                    "x-access-token": token
+                }
+            });
             console.log(data);
             navigate('/');
         } catch (error) {
             console.log(error.message);
+            alert(error.message);
         }
     }
 
