@@ -60,7 +60,7 @@ const signIn = (req, res) => {
             res.status(200).json({
                 id: user.id,
                 name: user.name,
-                accessToken: token
+                token: token
             });
         })
         .catch(err => {
