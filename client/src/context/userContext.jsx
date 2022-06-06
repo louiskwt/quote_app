@@ -14,6 +14,12 @@ const userReducer = (userState, userAction) => {
     switch(userAction.type) {
         case "LOGIN_USER": 
             return userState = userAction.user;
+        case "LogOUT_USER":
+            return userState = {
+                    id: '',
+                    name: '',
+                    token: null
+            }
         default:
             return userState
     }
@@ -29,8 +35,15 @@ const UserContextProvider = ({children}) => {
         dispatchUser({ type: "LOGIN_USER", user});
     };
 
+    const logoutUser = () => {
+        dispatchUser({ type: "LOGOUT_USER" });
+        localStorage.removeItem('user');
+        navigate('/login');
+    }
+
     const value = {
         loginUser,
+        logoutUser,
         userState
     }
 

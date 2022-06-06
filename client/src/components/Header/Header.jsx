@@ -9,6 +9,7 @@ import CreateIcon from '@mui/icons-material/Create';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import LogoutIcon from '@mui/icons-material/Logout';
 import { Link } from "react-router-dom";
 import { UserContext } from '../../context/userContext';
 
@@ -17,7 +18,7 @@ import './Header.css';
 
 const Header = () => {
     // user context
-    const { userState } = useContext(UserContext);
+    const { userState, logoutUser } = useContext(UserContext);
 
     const drawerId = userState.token ? "drawer" : "hiddenDrawer";
 
@@ -67,6 +68,12 @@ const Header = () => {
                                         <ListItemText primary='Create Quotes' />
                                     </ListItem>
                                 </Link>
+                                <ListItem button onClick={logoutUser} >
+                                    <ListItemIcon>
+                                        <LogoutIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary='登出' />
+                                </ListItem>
                             </List>
                         </Box>
                     </Drawer>
