@@ -57,7 +57,7 @@ const Header = () => {
                                         <ListItemIcon>
                                             <InsertDriveFileIcon />
                                         </ListItemIcon>
-                                        <ListItemText primary='Quotes' />
+                                        <ListItemText primary='報價單' />
                                     </ListItem>
                                 </Link>
                                 <Link to='/create' className='header__link'>
@@ -65,7 +65,7 @@ const Header = () => {
                                         <ListItemIcon>
                                             <CreateIcon />
                                         </ListItemIcon>
-                                        <ListItemText primary='Create Quotes' />
+                                        <ListItemText primary='製作報價單' />
                                     </ListItem>
                                 </Link>
                                 <ListItem button onClick={logoutUser} >
