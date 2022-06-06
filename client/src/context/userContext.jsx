@@ -14,7 +14,7 @@ const userReducer = (userState, userAction) => {
     switch(userAction.type) {
         case "LOGIN_USER": 
             return userState = userAction.user;
-        case "LogOUT_USER":
+        case "LOGOUT_USER":
             return userState = {
                     id: '',
                     name: '',

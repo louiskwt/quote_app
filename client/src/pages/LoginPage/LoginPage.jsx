@@ -3,6 +3,7 @@ import {useContext, useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import userApi from '../../apis/userApi'
 import { UserContext } from '../../context/userContext'
+import { toast } from 'react-toastify';
 
 const LoginPage = () => {
   
@@ -26,10 +27,12 @@ const LoginPage = () => {
     try {
       const res = await userApi.post('/signin', signInFormData);
       loginUser(res.data);
+      toast.success(`登入成功，歡迎 ${res.data.name}`);
       localStorage.setItem('user', JSON.stringify(res.data));
       navigate('/');
     } catch (error) {
       console.log(error.message);
+      toast.error('登入失敗，請確認帳號密碼');
     }
   }
 
