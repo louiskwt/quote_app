@@ -1,6 +1,7 @@
 import { useReducer, createContext } from 'react';
 
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const UserContext = createContext();
 
@@ -38,6 +39,7 @@ const UserContextProvider = ({children}) => {
     const logoutUser = () => {
         dispatchUser({ type: "LOGOUT_USER" });
         localStorage.removeItem('user');
+        toast.info('登出成功，期待下次再見');
         navigate('/login');
     }
 
