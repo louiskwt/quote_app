@@ -9,6 +9,8 @@ import './App.css'
 import UpdateQuote from './pages/MainPage/UpdateQuote'
 import { UserContextProvider } from './context/userContext'
 import LoginPage from './pages/LoginPage/LoginPage'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 
@@ -25,6 +27,7 @@ function App() {
                 <Route exact path='/update/:id' element={<UpdateQuote />} />
                 <Route exact path='/create' element={<CreateQuote />} />
               </Routes>
+              <ToastContainer />
             </FormsContextProvider>
         </QuotesContextProvider>
       </UserContextProvider>
