@@ -7,6 +7,7 @@ import Loader from "../../components/Loader/Loader";
 import QuoteList from "../../components/QuoteList/QuoteList";
 import { UserContext } from "../../context/userContext";
 import { useNavigate } from "react-router-dom";
+import SearchBar from "../../components/SearchBar/SearchBar";
 
 const Home = () => {
   // pull out the state and set function from context
@@ -49,6 +50,7 @@ const Home = () => {
       {quotes ? (
         <>
           <h1>曾氏工程公司</h1>
+          <SearchBar />
           <QuoteList quotes={quotes} id="quote-list" />
           <Tab iconType="add" />
         </>
