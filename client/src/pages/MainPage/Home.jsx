@@ -8,6 +8,7 @@ import QuoteList from "../../components/QuoteList/QuoteList";
 import { UserContext } from "../../context/userContext";
 import { useNavigate } from "react-router-dom";
 import SearchBar from "../../components/SearchBar/SearchBar";
+import { motion } from "framer-motion";
 
 const Home = () => {
   // pull out the state and set function from context
@@ -50,8 +51,23 @@ const Home = () => {
       {quotes ? (
         <>
           <h1>曾氏工程公司</h1>
-          <SearchBar />
-          <QuoteList quotes={quotes} id="quote-list" />
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 30,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 1.0,
+            }}
+          >
+            <SearchBar />
+            <QuoteList quotes={quotes} id="quote-list" />
+          </motion.div>
+
           <Tab iconType="add" />
         </>
       ) : (
