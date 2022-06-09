@@ -23,6 +23,10 @@ const Home = () => {
         const res = await quoteApi.get("/", {
           headers: { "x-access-token": userState.token },
         });
+        const sortedQuotes = res.data.data.sort((a, b) => {
+          return new Date(b.updatedAt) - new Date(a.updatedAt);
+        });
+
         setQuotes(res.data.data);
       } catch (error) {
         console.log(error.message);
