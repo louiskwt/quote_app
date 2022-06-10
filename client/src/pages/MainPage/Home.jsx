@@ -12,7 +12,7 @@ import { motion } from "framer-motion";
 
 const Home = () => {
   // pull out the state and set function from context
-  const { quotes, setQuotes } = useContext(QuotesContext);
+  const { quotes, setQuotes, filter } = useContext(QuotesContext);
 
   const { userState } = useContext(UserContext);
 
@@ -29,7 +29,7 @@ const Home = () => {
           return new Date(b.updatedAt) - new Date(a.updatedAt);
         });
 
-        setQuotes(res.data.data);
+        setQuotes(sortedQuotes);
       } catch (error) {
         console.log(error.message);
         navigate("/login");
@@ -65,7 +65,7 @@ const Home = () => {
             }}
           >
             <SearchBar />
-            <QuoteList quotes={quotes} id="quote-list" />
+            <QuoteList quotes={quotes} filter={filter} id="quote-list" />
           </motion.div>
 
           <Tab iconType="add" />

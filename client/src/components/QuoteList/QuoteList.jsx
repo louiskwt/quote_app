@@ -1,15 +1,22 @@
-import { Typography } from '@mui/material'
-import React from 'react'
-import QuoteCard from '../QuoteCard/QuoteCard'
+import { Typography } from "@mui/material";
+import React from "react";
+import QuoteCard from "../QuoteCard/QuoteCard";
 
-const QuoteList = ({quotes}) => {
-  return (
-    (quotes.length > 0 ? quotes.map((quote) => (
-        <QuoteCard quote={quote} key={quote.id} />
-    )) : <Typography variant='h5' textAlign="center" fontWeight='bold' >
+const QuoteList = ({ quotes, filter }) => {
+  return quotes.length > 0 ? (
+    quotes
+      .filter(
+        (quote) =>
+          quote.name.includes(filter) ||
+          quote.address.includes(filter) ||
+          quote.updatedAt.includes(filter)
+      )
+      .map((quote) => <QuoteCard quote={quote} key={quote.id} />)
+  ) : (
+    <Typography variant="h5" textAlign="center" fontWeight="bold">
       暫時沒有報價單...
-    </Typography>)
-  )
-}
+    </Typography>
+  );
+};
 
-export default QuoteList
+export default QuoteList;

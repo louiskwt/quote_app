@@ -1,37 +1,13 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Box, TextField } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { QuotesContext } from "../../context/quotesContext";
-import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
-  const { setQuotes, quotes } = useContext(QuotesContext);
-  const [searchText, setSearchText] = useState("");
+  const { setFilter, filter } = useContext(QuotesContext);
 
-  let navigate = useNavigate();
-
-  const handleSubmit = (e, searchText) => {
-    if (searchText !== "") {
-      e.preventDefault();
-      const filteredQuotes = quotes.filter(
-        (quote) =>
-          quote.address.includes(searchText) ||
-          quote.name.includes(searchText) ||
-          quote.updatedAt.includes(searchText)
-      );
-      setQuotes(filteredQuotes);
-    } else {
-      navigate("/");
-    }
-  };
   return (
-    <Box
-      component="form"
-      noValidate
-      onSubmit={(e) => {
-        handleSubmit(e, searchText);
-      }}
-    >
+    <Box component="form" noValidate>
       <TextField
         label="搜尋報價單"
         variant="outlined"
@@ -39,8 +15,8 @@ const SearchBar = () => {
         InputProps={{
           endAdornment: <SearchIcon />,
         }}
-        onChange={(e) => setSearchText(e.target.value)}
-        value={searchText}
+        onChange={(e) => setFilter(e.target.value)}
+        value={filter}
       />
     </Box>
   );
