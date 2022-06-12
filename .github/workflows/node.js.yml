@@ -34,7 +34,7 @@ jobs:
       - run: npm test --if-present
       - name: 'ssh key agent'
         uses: webfactory/ssh-agent@v0.5.4
-        with: ssh-private-key: ${{secrets.SSH_PRIVATE_KEY}}
+        with: ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       - name: rsync deployments
         uses: burnett01/rsync-deployments@5.1
         with:
