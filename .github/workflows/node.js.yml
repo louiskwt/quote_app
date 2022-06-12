@@ -6,7 +6,6 @@ name: Node.js CI
 on:
   push:
     branches: ["main"]
-  path: ./server
   pull_request:
     branches: ["main"]
 
@@ -26,6 +25,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
+          cache-dependency-path: server/package-lock.json
       - run: npm ci
       - run: npm run build
       - run: npm test --if-present
