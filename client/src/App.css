@@ -1,4 +1,12 @@
 @media print {
+  body {
+    background: #fff;
+  }
+
+  .header {
+    display: none;
+  }
+
   #download-btn {
     display: none;
   }
@@ -9,7 +17,6 @@
     display: none;
   }
   @page {
-      margin: 0;
-    }
-
+    margin: 0;
+  }
 }
