@@ -8,10 +8,27 @@ export default defineConfig({
     react(),
     VitePWA({
       includeAssets: ["src/*.png", "src/*ico"],
-      backgroundColor: "#F1DD8B",
-      themeColor: "#F1DD8B",
-      shortName: "曾氏公程公司",
-      name: "曾氏公程公司 | 報價單",
+      base: "/",
+      manifest: {
+        name: "曾氏工程報價系統",
+        short_name: "曾氏報價單",
+        start_url: "/",
+        display: "standalone",
+        background_color: "F1DD8B",
+        theme_color: "F1DD8B",
+        icons: [
+          {
+            src: "logo192.png",
+            sizes: "192x192",
+            type: "image/png",
+          },
+          {
+            src: "logo512.png",
+            sizes: "512x512",
+            type: "image/png",
+          },
+        ],
+      },
     }),
   ],
 });
