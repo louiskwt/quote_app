@@ -95,8 +95,8 @@ const Quote = ({ quote }) => {
       </Grid>
       <Divider sx={{ borderColor: "#000000", mt: 3 }} />
       <Grid container rowSpacing={3} spacing={5} sx={{ pl: 15, mt: 2, mb: 5 }}>
-        <Grid item xs={8}></Grid>
-        <Grid item xs={4} fontSize="large" sx={{ letterSpacing: "1px" }}>
+        <Grid item xs={7}></Grid>
+        <Grid item xs={5} fontSize="large" sx={{ letterSpacing: "1px" }}>
           <Box>總數:</Box>
           <Box mt={3}>${intlNum.format(totalPrice)}</Box>
         </Grid>
