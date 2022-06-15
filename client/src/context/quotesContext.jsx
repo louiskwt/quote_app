@@ -1,4 +1,4 @@
-import { useState, createContext, useMemo } from "react";
+import { useState, createContext } from "react";
 
 const QuotesContext = createContext();
 
