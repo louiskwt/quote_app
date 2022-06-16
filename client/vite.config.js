@@ -12,20 +12,8 @@ export default defineConfig({
         name: "曾氏工程報價系統",
         short_name: "曾氏報價單",
         display: "standalone",
-        background_color: "F1DD8B",
-        theme_color: "F1DD8B",
-        icons: [
-          {
-            src: "src/logo192.png",
-            sizes: "192x192",
-            type: "image/png",
-          },
-          {
-            src: "src/logo512.png",
-            sizes: "512x512",
-            type: "image/png",
-          },
-        ],
+        background_color: "#F1DD8B",
+        theme_color: "#F1DD8B",
       },
     }),
   ],
