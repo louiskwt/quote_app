@@ -102,10 +102,13 @@ const Quote = ({ quote }) => {
         </Grid>
       </Grid>
       <Grid container rowSpacing={3} spacing={5} sx={{ mt: 2, mb: 5 }}>
-        <Grid item xs={12} sx={{ mt: 2 }} fontSize="large">
-          工程備忘：
-        </Grid>
-        {quote.memo &&
+        {quote.memo[0] !== "" && (
+          <Grid item xs={12} sx={{ mt: 2 }} fontSize="large">
+            工程備忘：
+          </Grid>
+        )}
+
+        {quote.memo[0] !== "" &&
           quote.memo.map((memoItem, index) => (
             <Memo memoItem={memoItem} key={index} index={index} />
           ))}
