@@ -57,6 +57,7 @@ const Quote = ({ quote }) => {
         flexDirection: "column",
         mt: 3,
       }}
+      id="quote"
     >
       <Typography
         variant="h5"

@@ -16,6 +16,11 @@
   #tab {
     display: none;
   }
+
+  #quote {
+    background-color: #fff;
+  }
+
   @page {
     margin: 0;
     background: #fff;
