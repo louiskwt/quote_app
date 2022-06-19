@@ -46,7 +46,12 @@ const LoginPage = () => {
         flexDirection: "column",
       }}
     >
-      <Typography variant="h5" textAlign="center" fontWeight="bold">
+      <Typography
+        variant="h5"
+        textAlign="center"
+        fontWeight="bold"
+        data-testid="heading"
+      >
         請先登入
       </Typography>
       <Box
@@ -63,6 +68,7 @@ const LoginPage = () => {
           variant="outlined"
           sx={{ mt: 4 }}
           onChange={(e) => setName(e.target.value)}
+          data-testid="username"
         />
         <TextField
           label="密碼"
@@ -70,6 +76,7 @@ const LoginPage = () => {
           variant="outlined"
           sx={{ mt: 4 }}
           onChange={(e) => setPassword(e.target.value)}
+          data-testid="pw"
         />
         <Button
           variant="contained"
@@ -77,6 +84,7 @@ const LoginPage = () => {
           sx={{ mt: 5, fontSize: "1.1rem" }}
           onClick={handleLoginSubmit}
           endIcon={<LoginIcon />}
+          data-testid="login-btn"
         >
           登入
         </Button>
