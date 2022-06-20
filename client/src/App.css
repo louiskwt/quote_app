@@ -21,6 +21,10 @@
     background-color: #fff;
   }
 
+  .App {
+    background-color: #fff;
+  }
+
   @page {
     margin: 0;
     background: #fff;
