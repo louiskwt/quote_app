@@ -48,6 +48,7 @@ const Quote = ({ quote }) => {
   const date = new Date(quote.updatedAt);
 
   return (
+<<<<<<< HEAD
     <>
       <Container
         style={{
@@ -60,6 +61,29 @@ const Quote = ({ quote }) => {
           mt: 3,
         }}
         ref={pdfRef}
+=======
+    <Container
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        flexDirection: "column",
+        mt: 3,
+      }}
+      id="quote"
+    >
+      <Typography
+        variant="h5"
+        fontWeight={800}
+        fontSize="1.8rem"
+        textAlign="center"
+      >
+        曾氏工程公司
+      </Typography>
+      <Stack
+        sx={{ display: "flex", alignItem: "center", mt: 3 }}
+        direction={{ xs: "column" }}
+        spacing={{ xs: 1, md: 2 }}
+>>>>>>> d4150d9d135854da8d6eaad8709da524ab5f07b0
       >
         <Typography
           variant="h5"

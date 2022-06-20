@@ -49,23 +49,22 @@ const signIn = (req, res) => {
           message: "沒有這個用戶",
         });
       }
-      const pwIsValid = bcrypt
-        .compare(req.body.password, user.password)
-        .then((result) => result);
-
-      if (!pwIsValid) {
-        return res.status(401).json({
-          accessToken: null,
-          message: "密碼錯誤",
-        });
-      }
-      const token = jwt.sign({ id: user.id }, secret, {
-        expiresIn: 86400, // 24hrs
-      });
-      res.status(200).json({
-        id: user.id,
-        name: user.name,
-        token: token,
+      bcrypt.compare(req.body.password, user.password).then((result) => {
+        if (result) {
+          const token = jwt.sign({ id: user.id }, secret, {
+            expiresIn: 86400 * 7, // 1 week
+          });
+          res.status(200).json({
+            id: user.id,
+            name: user.name,
+            token: token,
+          });
+        } else {
+          return res.status(500).json({
+            token: null,
+            message: "密碼錯誤",
+          });
+        }
       });
     })
     .catch((err) => {

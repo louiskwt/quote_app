@@ -1,4 +1,4 @@
-import { Button, Container, TextField, Typography } from "@mui/material";
+import { Box, Button, Container, TextField, Typography } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LoginIcon from "@mui/icons-material/Login";
@@ -46,30 +46,49 @@ const LoginPage = () => {
         flexDirection: "column",
       }}
     >
-      <Typography variant="h5" textAlign="center" fontWeight="bold">
+      <Typography
+        variant="h5"
+        textAlign="center"
+        fontWeight="bold"
+        data-testid="heading"
+      >
         請先登入
       </Typography>
-      <TextField
-        label="用户名"
-        variant="outlined"
-        sx={{ mt: 4 }}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <TextField
-        label="密碼"
-        type="password"
-        variant="outlined"
-        sx={{ mt: 4 }}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <Button
-        variant="contained"
-        sx={{ mt: 5, fontSize: "1.1rem" }}
-        onClick={handleLoginSubmit}
-        endIcon={<LoginIcon />}
+      <Box
+        component="form"
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          flexDirection: "column",
+        }}
+        onSubmit={handleLoginSubmit}
       >
-        登入
-      </Button>
+        <TextField
+          label="用户名"
+          variant="outlined"
+          sx={{ mt: 4 }}
+          onChange={(e) => setName(e.target.value)}
+          data-testid="username"
+        />
+        <TextField
+          label="密碼"
+          type="password"
+          variant="outlined"
+          sx={{ mt: 4 }}
+          onChange={(e) => setPassword(e.target.value)}
+          data-testid="pw"
+        />
+        <Button
+          variant="contained"
+          type="submit"
+          sx={{ mt: 5, fontSize: "1.1rem" }}
+          onClick={handleLoginSubmit}
+          endIcon={<LoginIcon />}
+          data-testid="login-btn"
+        >
+          登入
+        </Button>
+      </Box>
     </Container>
   );
 };
