@@ -5,9 +5,7 @@ import {
   Typography,
   Grid,
   Box,
-  Button,
 } from "@mui/material";
-import DownloadIcon from "@mui/icons-material/Download";
 
 // format price
 const intlNum = new Intl.NumberFormat("en-US");
@@ -35,7 +33,7 @@ const Memo = ({ memoItem, index }) => {
   );
 };
 
-const Quote = ({ quote }) => {
+const Quote = ({ quote, printRef }) => {
   // calculate the total price
   const totalPrice = quote.contents.reduce((accumulator, object) => {
     return accumulator + object.price;
@@ -43,11 +41,6 @@ const Quote = ({ quote }) => {
 
   // format date
   const date = new Date(quote.updatedAt);
-
-  // save PDF Button
-  const savePDF = () => {
-    window.print();
-  };
 
   return (
     <Container
@@ -58,6 +51,7 @@ const Quote = ({ quote }) => {
         mt: 3,
       }}
       id="quote"
+      ref={printRef}
     >
       <Typography
         variant="h5"
@@ -114,20 +108,6 @@ const Quote = ({ quote }) => {
             <Memo memoItem={memoItem} key={index} index={index} />
           ))}
       </Grid>
-      <Box
-        sx={{ marginBottom: "2rem", display: "flex", justifyContent: "center" }}
-      >
-        <Button
-          sx={{ width: "60%", fontSize: "1.15rem", fontWeight: "bold" }}
-          variant="contained"
-          id="download-btn"
-          color="primary"
-          onClick={savePDF}
-          endIcon={<DownloadIcon />}
-        >
-          下載報價單
-        </Button>
-      </Box>
     </Container>
   );
 };
