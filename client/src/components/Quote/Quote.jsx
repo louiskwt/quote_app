@@ -72,7 +72,12 @@ const Quote = ({ quote }) => {
         direction={{ xs: "column" }}
         spacing={{ xs: 1, md: 2 }}
       >
-        <Typography as="span" fontWeight="bold" fontSize="1.2rem">
+        <Typography
+          data-testid="client"
+          as="span"
+          fontWeight="bold"
+          fontSize="1.2rem"
+        >
           客戶： {quote.name}
         </Typography>
         <Typography as="span" fontWeight="bold" fontSize="1.2rem">

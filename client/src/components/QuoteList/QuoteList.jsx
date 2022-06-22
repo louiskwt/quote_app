@@ -11,7 +11,9 @@ const QuoteList = ({ quotes, filter }) => {
           quote.address.includes(filter) ||
           quote.updatedAt.includes(filter)
       )
-      .map((quote) => <QuoteCard quote={quote} key={quote.id} />)
+      .map((quote) => (
+        <QuoteCard quote={quote} test-id={`quote-${quote.id}`} key={quote.id} />
+      ))
   ) : (
     <Typography variant="h5" textAlign="center" fontWeight="bold">
       暫時沒有報價單...
