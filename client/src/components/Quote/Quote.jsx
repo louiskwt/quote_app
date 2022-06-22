@@ -13,10 +13,13 @@ const intlNum = new Intl.NumberFormat("en-US");
 const Item = ({ content, index }) => {
   return (
     <>
-      <Grid item xs={8} fontSize="large">
-        {index + 1}. {content.item}
+      <Grid item xs={1} sm={0.5} sx={{ mr: 0 }} fontSize="large">
+        {index + 1}
       </Grid>
-      <Grid item xs={4} fontSize="large">
+      <Grid item xs={7} sm={7.5} sx={{ ml: 0 }} fontSize="large">
+        {content.item}
+      </Grid>
+      <Grid item xs={3} sm={4} sx={{ ml: 0 }} fontSize="large">
         $ {intlNum.format(content.price)}
       </Grid>
     </>
@@ -26,8 +29,11 @@ const Item = ({ content, index }) => {
 const Memo = ({ memoItem, index }) => {
   return (
     <>
-      <Grid item xs={12} fontSize="large">
-        {index + 1}. {memoItem}
+      <Grid item xs={1} fontSize="large" sx={{ mr: 0 }}>
+        {index + 1}
+      </Grid>
+      <Grid item xs={10} sm={11} sx={{ ml: 0 }} fontSize="large">
+        {memoItem}
       </Grid>
     </>
   );
@@ -90,8 +96,8 @@ const Quote = ({ quote, printRef }) => {
       </Grid>
       <Divider sx={{ borderColor: "#000000", mt: 3 }} />
       <Grid container rowSpacing={3} spacing={5} sx={{ pl: 15, mt: 2, mb: 5 }}>
-        <Grid item xs={7}></Grid>
-        <Grid item xs={5} fontSize="large" sx={{ letterSpacing: "1px" }}>
+        <Grid item xs={7} sm={8}></Grid>
+        <Grid item xs={5} sm={4} fontSize="large" sx={{ letterSpacing: "1px" }}>
           <Box>總數:</Box>
           <Box mt={3}>${intlNum.format(totalPrice)}</Box>
         </Grid>

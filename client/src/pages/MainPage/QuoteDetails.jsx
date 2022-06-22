@@ -1,5 +1,5 @@
 import { Box, Button, Container } from "@mui/material";
-import { useContext, useEffect, useRef } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import quoteApi from "../../apis/quoteApi";
 import Loader from "../../components/Loader/Loader";
@@ -16,6 +16,7 @@ const QuoteDetails = () => {
   const { id } = useParams();
   const { selectedQuote, setSelectedQuote } = useContext(QuotesContext);
   const { userState } = useContext(UserContext);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 400);
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -31,6 +32,7 @@ const QuoteDetails = () => {
         navigate("/login");
       }
     };
+
     fetchQuoteDetail();
   }, []);
 
@@ -46,7 +48,14 @@ const QuoteDetails = () => {
     const imgProperties = pdf.getImageProperties(data);
     const pdfWidth = pdf.internal.pageSize.getWidth();
     const pdfHeight = (imgProperties.height * pdfWidth) / imgProperties.width;
-    pdf.addImage(data, "PNG", 0, 0, pdfWidth, pdfHeight);
+
+    const xPosition = isMobile ? 50 : 0;
+    const pageWidth = isMobile ? pdfWidth * 0.6 : pdfWidth;
+    const pageHeight = isMobile ? pdfHeight * 0.4 : pdfHeight;
+    console.log(isMobile);
+    console.log(xPosition, pageWidth, pageHeight);
+
+    pdf.addImage(data, "PNG", xPosition, 0, pageWidth, pageHeight);
     pdf.save(`${address}`);
   };
 
