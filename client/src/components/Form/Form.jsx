@@ -63,6 +63,7 @@ const Form = ({ action, quote }) => {
             variant="contained"
             endIcon={<AddCircleOutlineIcon />}
             onClick={addContent}
+            data-testid="add-content"
           >
             增加細項
           </Button>
@@ -77,6 +78,7 @@ const Form = ({ action, quote }) => {
                   color="error"
                   onClick={() => deleteContent(content.id)}
                   startIcon={<DeleteIcon />}
+                  data-testid="delete-content"
                 >
                   刪除細項
                 </Button>
@@ -125,6 +127,7 @@ const Form = ({ action, quote }) => {
           variant="contained"
           sx={{ mt: 3 }}
           onClick={(e) => handleFormSubmit(e, userState.token)}
+          data-testid="create-form"
         >
           建立報價單
         </Button>

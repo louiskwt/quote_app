@@ -62,6 +62,7 @@ const QuoteCard = ({ quote }) => {
           color="error"
           variant="outlined"
           onClick={() => handleDelete(quote.id)}
+          data-testid="delete-quote-btn"
         >
           <span>刪除</span>
         </Button>
