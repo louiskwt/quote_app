@@ -46,7 +46,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: true,
         get() {
           const rawValue = this.getDataValue("payment_method");
-          // turn contents price into an integer
+          // flatten the obj array
           return rawValue.map((obj) => {
             return obj.info;
           });
