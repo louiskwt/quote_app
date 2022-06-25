@@ -18,6 +18,16 @@ const initialFormState = {
       price: "",
     },
   ],
+  payment_method: [
+    {
+      id: uuidv4(),
+      info: "開工收50%",
+    },
+    {
+      id: uuidv4(),
+      info: "完工收50%",
+    },
+  ],
   memo: "",
 };
 
@@ -27,7 +37,16 @@ const formReducer = (formState, formAction) => {
       return { ...formState, [formAction.field]: formAction.value };
     case "ADD_CONTENT":
       return { ...formState, contents: formAction.updatedContents };
+    case "ADD_PAYMENT_METHOD":
+      return { ...formState, payment_method: formAction.updatedPayment };
     case "DELETE_CONTENT":
+      return {
+        ...formState,
+        payment_method: formState.contents.filter(
+          (payment) => payment.id !== formAction.id
+        ),
+      };
+    case "DELETE_PAYMENT":
       return {
         ...formState,
         contents: formState.contents.filter(
@@ -36,6 +55,8 @@ const formReducer = (formState, formAction) => {
       };
     case "SET_CONTENT_INPUT":
       return { ...formState, contents: formAction.updatedContents };
+    case "SET_PAYMRNT_INPUT":
+      return { ...formState, contents: formAction.updatedPayment };
     case "SET_UPDATE_FORM":
       return {
         id: formAction.quote.id,
@@ -43,6 +64,16 @@ const formReducer = (formState, formAction) => {
         address: formAction.quote.address,
         contents: formAction.quote.contents,
         memo: formAction.quote.memo.join("$"),
+        payment_method: formAction.quote.payment_method || [
+          {
+            id: uuidv4(),
+            info: "開工收50%",
+          },
+          {
+            id: uuidv4(),
+            info: "完工收50%",
+          },
+        ],
       };
     case "RESET_FORM_STATE":
       return {
@@ -77,9 +108,25 @@ const FormsContextProvider = ({ children }) => {
     dispatchForm({ type: "ADD_CONTENT", updatedContents });
   };
 
+  const addPaymentMethod = () => {
+    // set up an empty content
+    const payment = {
+      id: uuidv4(),
+      item: "",
+      price: "",
+    };
+    const updatedPayment = [...formState.payment_method, payment];
+    dispatchForm({ type: "ADD_PAYMENT_METHOD", updatedPayment });
+  };
+
   const deleteContent = (id) => {
     // filter out the content based on id
     dispatchForm({ type: "DELETE_CONTENT", id });
+  };
+
+  const deletePayment = (id) => {
+    // filter out the content based on id
+    dispatchForm({ type: "DELETE_PAYMENT", id });
   };
 
   const handleContentInput = (index, key, value) => {
@@ -89,12 +136,20 @@ const FormsContextProvider = ({ children }) => {
     dispatchForm({ type: "SET_CONTENT_INPUT", updatedContents });
   };
 
+  const handlePaymentInput = (index, key, value) => {
+    let updatedPayment = [...formState.contents];
+    updatedPayment[index][key] = value;
+
+    dispatchForm({ type: "SET_PAYMENT_INPUT", updatedPayment });
+  };
+
   const handleFormSubmit = async (event, token) => {
     let formData = {
       name: formState.name,
       address: formState.address,
       contents: formState.contents,
       memo: [formState.memo],
+      payment_method: formState.payment_method,
     };
     console.log(formData);
     event.preventDefault();
@@ -119,6 +174,7 @@ const FormsContextProvider = ({ children }) => {
       address: formState.address,
       contents: formState.contents,
       memo: [formState.memo],
+      payment_method: formState.payment_method,
     };
 
     event.preventDefault();
@@ -150,6 +206,9 @@ const FormsContextProvider = ({ children }) => {
     handleFormUpdate,
     setUpdateForm,
     resetForm,
+    addPaymentMethod,
+    deletePayment,
+    handlePaymentInput,
     formState,
   };
 
