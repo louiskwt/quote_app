@@ -46,13 +46,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: true,
         get() {
           const rawValue = this.getDataValue("payment_method");
-          // flatten the obj array
-          if (rawValue) {
-            return rawValue.map((obj) => {
-              return obj.info;
-            });
-          }
-          return false;
+          return rawValue || false;
         },
       },
     },

@@ -141,6 +141,7 @@ const Form = ({ action, quote }) => {
             增加細項
           </Button>
         </Stack>
+
         {/* Payment method */}
         {formState.payment_method &&
           formState.payment_method.map((payment, index) => (
@@ -150,7 +151,7 @@ const Form = ({ action, quote }) => {
                   variant="outlined"
                   size="medium"
                   color="error"
-                  onClick={() => deletePaymentInput(content.id)}
+                  onClick={() => deletePayment(payment.id)}
                   startIcon={<DeleteIcon />}
                   data-testid="delete-content"
                 >
@@ -167,9 +168,11 @@ const Form = ({ action, quote }) => {
                   id="info"
                   multiline
                   value={payment.info}
-                  onChange={(e) =>
-                    handlePaymentInput(index, e.target.id, e.target.value)
-                  }
+                  onChange={(e) => {
+                    console.log(payment.info, payment.id);
+                    console.log(e.target.value);
+                    handlePaymentInput(index, e.target.id, e.target.value);
+                  }}
                 />
               </Box>
             </div>

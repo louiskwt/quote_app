@@ -25,7 +25,7 @@ const initialFormState = {
     },
     {
       id: uuidv4(),
-      info: "完工收50%",
+      info: "完工即收另外50%",
     },
   ],
   memo: "",
@@ -49,14 +49,14 @@ const formReducer = (formState, formAction) => {
     case "DELETE_PAYMENT":
       return {
         ...formState,
-        contents: formState.contents.filter(
-          (content) => content.id !== formAction.id
+        payment_method: formState.payment_method.filter(
+          (payment) => payment.id !== formAction.id
         ),
       };
     case "SET_CONTENT_INPUT":
       return { ...formState, contents: formAction.updatedContents };
-    case "SET_PAYMRNT_INPUT":
-      return { ...formState, contents: formAction.updatedPayment };
+    case "SET_PAYMENT_INPUT":
+      return { ...formState, payment_method: formAction.updatedPayment };
     case "SET_UPDATE_FORM":
       return {
         id: formAction.quote.id,
@@ -71,7 +71,7 @@ const formReducer = (formState, formAction) => {
           },
           {
             id: uuidv4(),
-            info: "完工收50%",
+            info: "完工即收另外50%",
           },
         ],
       };
@@ -137,7 +137,7 @@ const FormsContextProvider = ({ children }) => {
   };
 
   const handlePaymentInput = (index, key, value) => {
-    let updatedPayment = [...formState.contents];
+    let updatedPayment = [...formState.payment_method];
     updatedPayment[index][key] = value;
 
     dispatchForm({ type: "SET_PAYMENT_INPUT", updatedPayment });
