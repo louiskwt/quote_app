@@ -19,7 +19,8 @@ module.exports = {
     username: "ubuntu",
     password: process.env.DB_PASSWORD,
     database: "quotes_app",
-    host: "127.0.0.1",
+    host: "localhost",
+    port: 5432,
     dialect: "postgres",
   },
 };
