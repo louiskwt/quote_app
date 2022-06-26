@@ -78,7 +78,7 @@ const Quote = ({ quote, printRef }) => {
         fontSize="1.8rem"
         textAlign="center"
       >
-        曾氏工程公司
+        曾氏工程報價單
       </Typography>
       <Stack
         sx={{ display: "flex", alignItem: "center", mt: 3 }}
