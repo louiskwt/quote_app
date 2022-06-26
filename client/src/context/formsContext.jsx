@@ -64,7 +64,7 @@ const formReducer = (formState, formAction) => {
         address: formAction.quote.address,
         contents: formAction.quote.contents,
         memo: formAction.quote.memo.join("$"),
-        payment_method: formAction.quote.payment_method || [
+        payment_method: formAction.quote.payment_method.length > 0 || [
           {
             id: uuidv4(),
             info: "開工收50%",

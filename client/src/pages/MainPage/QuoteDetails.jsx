@@ -55,6 +55,7 @@ const QuoteDetails = () => {
             marginBottom: "2rem",
             display: "flex",
             justifyContent: "center",
+            mt: 5,
           }}
         >
           <Button

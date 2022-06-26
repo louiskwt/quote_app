@@ -134,7 +134,7 @@ const Quote = ({ quote, printRef }) => {
         </Grid>
       )}
 
-      {quote.payment_method && (
+      {quote.payment_method.length > 0 && (
         <Grid container rowSpacing={3} spacing={5} sx={{ mb: 5 }}>
           {
             <Grid item xs={12} sx={{ mt: 2 }} fontSize="large">
