@@ -28,7 +28,6 @@ jobs:
           cache: "npm"
           cache-dependency-path: "./server/package-lock.json"
       - run: npm ci
-      - run: npm run migrate
       - run: npm run build
       - run: npm test --if-present
       - name: Deploy to EC2
@@ -38,3 +37,13 @@ jobs:
           REMOTE_HOST: ${{ secrets.EC2_HOST }}
           REMOTE_USER: ${{ secrets.EC2_USER }}
           TARGET: ${{ secrets.TARGET_DIR }}
+      - name: Migrate in EC2
+        env:
+          PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          HOST_NAME: ${{ secrets.EC2_HOST }}
+          USER_NANE: ${{ secrets.EC2_USER }}
+        run: |
+          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST_NAME} '
+            cd ~/quote-app/server && npx sequelize-cli db:migrate
+            '
