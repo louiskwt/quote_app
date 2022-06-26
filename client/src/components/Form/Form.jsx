@@ -22,6 +22,9 @@ const Form = ({ action, quote }) => {
     deleteContent,
     handleFormSubmit,
     handleFormUpdate,
+    addPaymentMethod,
+    deletePayment,
+    handlePaymentInput,
   } = useContext(FormsContext);
 
   const { userState } = useContext(UserContext);
@@ -122,6 +125,60 @@ const Form = ({ action, quote }) => {
           />
         </FormControl>
       </Paper>
+      <Paper sx={{ p: 4, mt: 3 }}>
+        <Stack
+          direction="row"
+          spacing={2}
+          sx={{ mb: 3, justifyContent: "space-between" }}
+        >
+          <Typography variant="h6">付款方法</Typography>
+          <Button
+            variant="contained"
+            endIcon={<AddCircleOutlineIcon />}
+            onClick={addPaymentMethod}
+            data-testid="add-content"
+          >
+            增加細項
+          </Button>
+        </Stack>
+
+        {/* Payment method */}
+        {formState.payment_method &&
+          formState.payment_method.map((payment, index) => (
+            <div key={index} style={{ marginBottom: "1.5rem" }}>
+              <Stack direction="row" spacing={2}>
+                <Button
+                  variant="outlined"
+                  size="medium"
+                  color="error"
+                  onClick={() => deletePayment(payment.id)}
+                  startIcon={<DeleteIcon />}
+                  data-testid="delete-content"
+                >
+                  刪除細項
+                </Button>
+              </Stack>
+              <Box
+                component="form"
+                sx={{ mt: 3, display: "flex", justifyContent: "space-between" }}
+              >
+                <TextField
+                  label="付款資訊"
+                  sx={{ mr: 4, width: "50ch" }}
+                  id="info"
+                  multiline
+                  value={payment.info}
+                  onChange={(e) => {
+                    console.log(payment.info, payment.id);
+                    console.log(e.target.value);
+                    handlePaymentInput(index, e.target.id, e.target.value);
+                  }}
+                />
+              </Box>
+            </div>
+          ))}
+      </Paper>
+
       {action === "create" && (
         <Button
           variant="contained"

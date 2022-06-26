@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
+    "migrate": "npx sequelize-cli db:migrate",
     "build": "npm --prefix ../client ci && npm --prefix ../client run build"
   },
   "keywords": [],

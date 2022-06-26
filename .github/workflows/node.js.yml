@@ -28,6 +28,7 @@ jobs:
           cache: "npm"
           cache-dependency-path: "./server/package-lock.json"
       - run: npm ci
+      - run: npm run migrate
       - run: npm run build
       - run: npm test --if-present
       - name: Deploy to EC2

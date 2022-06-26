@@ -39,6 +39,19 @@ const Memo = ({ memoItem, index }) => {
   );
 };
 
+const PaymentMethod = ({ paymentInfo, index }) => {
+  return (
+    <>
+      <Grid item xs={1} fontSize="large" sx={{ mr: 0 }}>
+        {index + 1}
+      </Grid>
+      <Grid item xs={10} sm={11} sx={{ ml: 0 }} fontSize="large">
+        {paymentInfo}
+      </Grid>
+    </>
+  );
+};
+
 const Quote = ({ quote, printRef }) => {
   // calculate the total price
   const totalPrice = quote.contents.reduce((accumulator, object) => {
@@ -65,7 +78,7 @@ const Quote = ({ quote, printRef }) => {
         fontSize="1.8rem"
         textAlign="center"
       >
-        曾氏工程公司
+        曾氏工程報價單
       </Typography>
       <Stack
         sx={{ display: "flex", alignItem: "center", mt: 3 }}
@@ -107,18 +120,37 @@ const Quote = ({ quote, printRef }) => {
           <Box mt={3}>${intlNum.format(totalPrice)}</Box>
         </Grid>
       </Grid>
-      <Grid container rowSpacing={3} spacing={5} sx={{ mb: 5 }}>
-        {quote.memo[0] !== "" && (
-          <Grid item xs={12} sx={{ mt: 2 }} fontSize="large">
-            工程備忘：
-          </Grid>
-        )}
+      {quote.memo[0] !== "" && (
+        <Grid container rowSpacing={3} spacing={5} sx={{ mb: 5 }}>
+          {
+            <Grid item xs={12} sx={{ mt: 2 }} fontSize="large">
+              工程備忘：
+            </Grid>
+          }
 
-        {quote.memo[0] !== "" &&
-          quote.memo.map((memoItem, index) => (
+          {quote.memo.map((memoItem, index) => (
             <Memo memoItem={memoItem} key={index} index={index} />
           ))}
-      </Grid>
+        </Grid>
+      )}
+
+      {quote.payment_method && (
+        <Grid container rowSpacing={3} spacing={5} sx={{ mb: 5 }}>
+          {
+            <Grid item xs={12} sx={{ mt: 2 }} fontSize="large">
+              付款方法：
+            </Grid>
+          }
+
+          {quote.payment_method.map((paymentInfo, index) => (
+            <PaymentMethod
+              paymentInfo={paymentInfo.info}
+              key={index}
+              index={index}
+            />
+          ))}
+        </Grid>
+      )}
     </Container>
   );
 };
